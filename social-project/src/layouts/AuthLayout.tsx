@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
-import MessengerSidebar from "../components/Messenger"
-import Header from "../components/Header"
-import MiniSidebar from "../components/MiniSidebar"
-import SubHeader from "../components/SubHeader"
-import MyPhoto from "../components/MyPhoto"
-import RecentActivity from "../components/Activity"
+import MessengerSidebar from "../component_helper/Messenger"
+import Header from "../component_helper/Header"
+import MiniSidebar from "../component_helper/MiniSidebar"
+import SubHeader from "../component_helper/SubHeader"
+import MyPhoto from "../component_helper/MyPhoto"
+import RecentActivity from "../component_helper/Activity"
 
 const AuthLayout = () => {
     return (

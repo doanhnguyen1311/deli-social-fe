@@ -1,0 +1,174 @@
+select {
+  background-color: white;
+  color: black;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+.form-select-custom {
+  &.black-brand-200 {
+    color: #200; // Màu chữ ban đầu trong dropdown.
+  }
+
+  &:focus {
+    color: #500; // Màu chữ khi chọn.
+  }
+}
+
+/* Add this CSS to your stylesheet */
+
+/* This targets the select element */
+select.form-select-custom {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23212121' d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px !important;
+}
+
+/* For Firefox which supports styling select options */
+select.form-select-custom option {
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* For Firefox which can style the dropdown */
+@-moz-document url-prefix() {
+  select.form-select-custom {
+    overflow: hidden;
+  }
+
+  select.form-select-custom:focus {
+    overflow: auto;
+  }
+
+  /* Styling the dropdown */
+  select.form-select-custom optgroup,
+  select.form-select-custom option {
+    background-color: white;
+    color: #212121;
+    padding: 8px 12px;
+  }
+
+  select.form-select-custom option:hover,
+  select.form-select-custom option:focus,
+  select.form-select-custom option:active {
+    background-color: #f5f5f5;
+    color: #212121;
+  }
+}
+
+/* Hide default arrow in IE */
+select.form-select-custom::-ms-expand {
+  display: none;
+}
+
+/* Custom dropdown styling (only works in Chrome and Safari with this approach) */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select.form-select-custom {
+    overflow-y: hidden;
+  }
+
+  /* Force the dropdown to appear below the select */
+  select.form-select-custom:focus {
+    overflow-y: auto;
+  }
+}
+
+/* Add this to your global styles or component styles */
+/* Note: This uses a CSS variable for IE/Edge to customize dropdown */
+:root {
+  --select-dropdown-max-height: 300px;
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+select.form-select-custom {
+  max-height: var(--select-dropdown-max-height);
+}
+
+/* Add this CSS to your stylesheet */
+
+/* This targets the select element */
+select.form-select-custom {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23212121' d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px !important;
+}
+
+/* For Firefox which supports styling select options */
+select.form-select-custom option {
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* For Firefox which can style the dropdown */
+@-moz-document url-prefix() {
+  select.form-select-custom {
+    overflow: hidden;
+  }
+
+  select.form-select-custom:focus {
+    overflow: auto;
+  }
+
+  /* Styling the dropdown */
+  select.form-select-custom optgroup,
+  select.form-select-custom option {
+    background-color: white;
+    color: #212121;
+    padding: 8px 12px;
+  }
+
+  select.form-select-custom option:hover,
+  select.form-select-custom option:focus,
+  select.form-select-custom option:active {
+    background-color: #f5f5f5;
+    color: #212121;
+  }
+}
+
+/* Hide default arrow in IE */
+select.form-select-custom::-ms-expand {
+  display: none;
+}
+
+/* Custom dropdown styling (only works in Chrome and Safari with this approach) */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select.form-select-custom {
+    overflow-y: hidden;
+  }
+
+  /* Force the dropdown to appear below the select */
+  select.form-select-custom:focus {
+    overflow-y: auto;
+  }
+}
+
+/* Add this to your global styles or component styles */
+/* Note: This uses a CSS variable for IE/Edge to customize dropdown */
+:root {
+  --select-dropdown-max-height: 300px;
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+select.form-select-custom {
+  max-height: var(--select-dropdown-max-height);
+}
+
+.react-select__control {
+  border-color: #e0e0e0;
+}
+
+.react-select__control--is-focused {
+  border-color: #7c3aed !important;
+}
+
+.react-select__menu {
+  z-index: 9999;
+}

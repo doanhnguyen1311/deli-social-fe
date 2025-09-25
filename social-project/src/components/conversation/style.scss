@@ -1,0 +1,57 @@
+.popup-chat {
+  position: absolute;
+  bottom: 7%;
+  right: 5%;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 8px 36px 2px #00000033;
+  border: 1px solid #f1f1f2;
+  min-width: 500px;
+  height: 600px;
+  animation: slideInRight 0.3s ease-out;
+  z-index: 999;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.chat-area-style {
+  border-top: 1px solid #f1f1f4;
+  box-shadow: 0px -8px 24px 0px #0000000f;
+}
+
+.avatar-sender {
+  width: 32px;
+  height: 32px;
+  border-radius: 9.6px;
+  border: 0.53px solid #f1f1f4;
+  object-fit: cover;
+  box-shadow: 0px 1.6px 6.4px 0px #0000001f;
+  box-shadow: -0.8px -0.8px 3.2px 0px #ffffff;
+}
+.mine-message {
+  background-color: #2EA5F5;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: normal;
+  border-radius: 12px;
+  border-top-right-radius: 4px;
+}
+.another-message {
+  background: #f7f3fe;
+  color: #4b3b61;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: normal;
+  border-radius: 12px;
+  border-top-left-radius: 4px;
+}

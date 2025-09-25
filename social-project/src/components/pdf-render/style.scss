@@ -1,0 +1,11 @@
+@media print {
+  /* Hide all elements inside #root */
+  .rpv-print__body-printing #root {
+    display: none;
+  }
+  .rpv-print__page {
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 0px !important;
+  }
+}

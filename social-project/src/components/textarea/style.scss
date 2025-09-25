@@ -1,0 +1,9 @@
+.textarea-comp {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    flex-grow: 1;
+  }
+}

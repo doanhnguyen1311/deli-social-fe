@@ -1,0 +1,23 @@
+.selected-id {
+  padding: 24px;
+  border-radius: 12px;
+  width: fit-content;
+  min-width: 180px;
+}
+
+.file-selected-hover-item {
+  &:hover {
+    background-color: #f1f1f4;
+  }
+}
+
+.card-upload-component {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px dashed #2EA5F5;
+  border-radius: 24px;
+}

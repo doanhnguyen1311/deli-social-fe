@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import SignUpForm from '../../components/Auth/SignUpForm';
-import SignInForm from '../../components/Auth/SignInForm';
-import TogglePanel from '../../components/Auth/TogglePanel';
+import SignUpForm from '../../component_helper/Auth/SignUpForm';
+import SignInForm from '../../component_helper/Auth/SignInForm';
+import TogglePanel from '../../component_helper/Auth/TogglePanel';
 import './index.css';
 
 const Login = () => {

@@ -1,0 +1,151 @@
+.multiple-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.two-line {
+  @extend .multiple-line;
+  -webkit-line-clamp: 2;
+}
+
+.three-line {
+  @extend .multiple-line;
+  -webkit-line-clamp: 3;
+}
+
+.four-line {
+  @extend .multiple-line;
+  -webkit-line-clamp: 4;
+}
+
+.five-line {
+  @extend .multiple-line;
+  -webkit-line-clamp: 5;
+}
+
+.six-line {
+  @extend .multiple-line;
+  -webkit-line-clamp: 6;
+}
+
+.text-gray {
+  color: #c4cada;
+}
+
+.text-transform-none {
+  text-transform: none !important;
+}
+
+.outline-none {
+  outline: none;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.border-solid {
+  border-style: solid !important;
+}
+
+.bg-none {
+  background: none !important;
+}
+
+
+// It does center the selected option, but not the options inside the dropdown. (case: select element)
+.text-align-last-center {
+  text-align-last: center;
+  -moz-text-align-last: center;
+}
+
+.rounded-right-0 {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rounded-left-0 {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.rounded-top-0 {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.rounded-bottom-0 {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.grid-3-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  .grid-full {
+    grid-column: 1 / span 3;
+  }
+}
+
+.grid-2-columns {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+
+  &.grid-odd-fit-content:nth-child(odd) {
+    width: fit-content;
+  }
+
+  .grid-full {
+    grid-column: 1 / span 2;
+  }
+}
+
+.list-style-position-inside {
+  list-style-position: inside;
+}
+
+.white-space-pre-line {
+  white-space: pre-line;
+}
+
+
+.form-input-custom {
+  &.disabled.form-control-solid {
+    &:active {
+      background-color: var(--bs-gray-100) !important;
+    }
+    border-color: var(--bs-gray-300) !important;
+    background-color: var(--bs-gray-100) !important;
+  }
+
+  input:disabled,
+  .form-control.form-control-solid:has(:disabled) {
+    background-color: var(--bs-gray-100) !important;
+    cursor: default;
+  }
+}
+
+.form-select-custom.form-select.form-select-solid {
+  &:disabled,
+  &:disabled:active {
+    background-color: var(--bs-gray-100) !important;
+    border-color: var(--bs-gray-300) !important;
+    box-shadow: none !important;
+  }
+}
+
+.form-textarea-custom:disabled {
+  border-color: var(--bs-gray-300) !important;
+  background-color: var(--bs-gray-100) !important;
+  box-shadow: none !important;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--bs-white) inset !important;
+}

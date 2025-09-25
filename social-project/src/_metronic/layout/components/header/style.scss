@@ -1,0 +1,122 @@
+.navbar-user-custom-non-metronic {
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  position: relative;
+}
+
+.text-full-mid-last-name {
+  word-wrap: break-word;
+  line-height: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+  margin: 0;
+}
+
+.dropdown-text-role {
+  line-height: normal;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  color: white;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.cashbook-link {
+  &.active {
+    background-color: #222329;
+    color: var(--bs-primary);
+  }
+}
+
+.cb-menu-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .cb-child-menu {
+    display: flex;
+    position: absolute;
+    top: calc(100% - 10px);
+    min-width: 200px;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+    transition: all 0.2s linear;
+    opacity: 0;
+    transform-origin: top center;
+  }
+
+  &:hover {
+    .cb-child-menu {
+      visibility: visible;
+      pointer-events: all;
+      user-select: all;
+      opacity: 1;
+      top: 100%;
+    }
+  }
+}
+
+.border-user-menu {
+  border: 1px solid #dbdfe9;
+  box-shadow: 0px 7px 18px 0px #00000017;
+}
+
+.sidebar-responsive {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-responsive.show {
+  transform: translateX(0);
+  z-index: 99999999999999;
+  background-color: #ffff;
+}
+.sidebar-overlay {
+  position: fixed;
+  top: 88px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 64px);
+  background: #2b273080;
+  z-index: 99;
+  display: flex;
+  align-items: flex-start;
+  transition: visibility 0s 0.3s, opacity 0.3s ease-in-out;
+}
+
+.sidebar-responsive {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-responsive.show {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+  z-index: 999999;
+}

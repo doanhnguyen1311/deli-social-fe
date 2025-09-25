@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom"
-import Sidebar from "../components/Sidebar"
-import MessengerSidebar from "../components/Messenger"
-import Header from "../components/Header"
-import RightSidebar from "../components/RightSidebar"
+import Sidebar from "../component_helper/Sidebar"
+import MessengerSidebar from "../component_helper/Messenger"
+import Header from "../component_helper/Header"
+import RightSidebar from "../component_helper/RightSidebar"
 
 const MasterLayout = () => {
     return (

@@ -1,0 +1,61 @@
+.calendar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.date-display {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filter-button {
+  position: relative;
+}
+
+.filter-button button {
+  width: 100%;
+  padding: 8px;
+  text-align: left;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.week-info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Override react-datepicker styles */
+.react-datepicker__week-number {
+  color: #666;
+  font-size: 12px;
+}
+
+.react-datepicker__day--selected {
+  background-color: #0066cc !important;
+}

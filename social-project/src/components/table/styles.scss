@@ -1,0 +1,113 @@
+.border-table-bottom::before {
+  content: "";
+  position: absolute;
+  width: 100% !important;
+  height: 1px;
+  top: 100%;
+  background-color: #f1f1f4;
+  z-index: 1;
+  box-shadow: "0px 1px 6px 0px #0000000A";
+}
+
+.custom-table-header {
+  border-radius: 8px;
+  border-bottom: 1px dashed #f1f1f2 !important;
+
+  th:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 0px;
+  }
+
+  th:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 0px;
+  }
+}
+
+.table-secondary-custom {
+  th,
+  td {
+    padding: 12px;
+    font-size: 13px;
+    min-width: 50px;
+  }
+
+  th {
+    text-wrap: nowrap;
+    color: var(--bs-gray-500);
+    font-weight: 400;
+
+    &[data-title="id"] {
+      width: 50px;
+    }
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  td {
+    border-bottom: 1px dashed #f1f1f2 !important;
+    padding-block: 12px;
+
+    * {
+      font-weight: 400;
+    }
+  }
+}
+
+.table-main {
+  width: 100%;
+
+  th,
+  td {
+    padding: 12px;
+    border-bottom: 1px dashed var(--bs-gray-200);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  tbody {
+    tr:hover {
+      background-color: #fdfdfd;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+.item-edit-view {
+  padding: 8px !important;
+  color: #2b2730 !important;
+  background-color: #fff !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  min-width: 90px !important;
+  z-index: 99999;
+  text-align: center !important;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.02) inset, -1px -1px 1px 0px #fff;
+}
+
+.item-edit-view:hover {
+  background-color: rgba(253, 240, 246, 0.5) !important;
+  cursor: pointer !important;
+  border-radius: 4px;
+}
+
+.hover-row-table {
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 4px 20px 0px #1818181a;
+    background: #fcfcfc !important;
+  }
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
+}

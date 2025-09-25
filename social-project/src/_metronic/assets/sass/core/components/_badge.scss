@@ -1,0 +1,105 @@
+//
+// Badge
+//
+
+// Mixin for badge dimensions
+@mixin badge-dimensions($size, $font-size: null) {
+  min-width: $size;
+  @if $font-size != null {
+    font-size: $font-size;
+  }
+  &.badge-square {
+    height: $size;
+  }
+  &.badge-circle {
+    width: $size;
+    height: $size;
+    padding: 0;
+    border-radius: 50%;
+    min-width: unset;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+
+  // Default fixed size styles
+  &.badge-circle,
+  &.badge-square {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: $badge-size;
+    min-width: $badge-size;
+    padding: 0 0.1rem;
+    line-height: 0;
+  }
+
+  &.badge-circle {
+    border-radius: 50%;
+    width: $badge-size;
+    padding: 0;
+    min-width: unset;
+  }
+
+  // Size modifiers using mixin
+  &.badge-sm {
+    @include badge-dimensions($badge-size-sm, $badge-font-size-sm);
+  }
+
+  &.badge-lg {
+    @include badge-dimensions($badge-size-lg, $badge-font-size-lg);
+  }
+}
+
+// Color Themes
+@each $name, $value in $theme-colors {
+  .badge-#{$name} {
+    color: var(--#{$prefix}#{$name}-inverse);
+    background-color: var(--#{$prefix}#{$name});
+    &.badge-outline {
+      border: 1px solid var(--#{$prefix}#{$name});
+      color: var(--#{$prefix}#{$name});
+      background-color: transparent;
+    }
+  }
+
+  .badge-light-#{$name} {
+    color: var(--#{$prefix}#{$name});
+    background-color: var(--#{$prefix}#{$name}-light);
+  }
+}
+
+// Additional Badge States
+.badge-muted {
+  border: 1px solid #EAE9EA !important;
+  background: #F9F9F9 !important;
+  color: #9E9E9E !important;
+}
+
+.badge-success {
+  border: 1px solid rgba(23, 198, 83, 0.20) !important;
+  background: #EAFFF1 !important;
+  color: #04B440 !important;
+}
+
+.badge-danger {
+  border: 1px solid rgba(248, 40, 90, 0.20) !important;
+  background: #FFEEF3 !important;
+  color: #D81A48 !important;
+}
+
+.badge-info {
+  border: 1px solid #CEB0FA !important;
+  background: rgba(241, 233, 253, 0.50) !important;
+  color: #6200EE !important;
+}
+
+.badge-warning {
+  border: 1px solid #B5A72A !important;
+  background: #FFFDE7 !important;
+  color: #6B6319 !important;
+}

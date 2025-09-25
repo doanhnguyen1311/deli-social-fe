@@ -1,0 +1,14 @@
+.page-title-component {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  .main-title {
+    color: #2EA5F5;
+    &:hover {
+      color: #2EA5F5;
+    }
+  }
+  .sub-title {
+    color: #9E9E9E;
+  }
+}

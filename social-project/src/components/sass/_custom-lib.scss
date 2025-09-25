@@ -1,0 +1,432 @@
+// Custom react checkbox tree
+.react-checkbox-tree {
+  >ol {
+    padding: 0 !important;
+  }
+
+  .rct-collapse.rct-collapse-btn {
+    border: none;
+    background-color: transparent;
+    color: var(--bs-grey);
+    padding: 0;
+    padding-right: 16px;
+  }
+
+  .rct-title {
+    margin-left: 8px;
+  }
+
+  .rct-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+
+    label {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="checkbox"] {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      align-self: center;
+      cursor: pointer;
+      outline: none;
+
+      &:checked {
+        background-color: var(--bs-primary);
+      }
+    }
+  }
+
+  ul,
+  ol {
+    list-style-type: none;
+    padding-left: 40px;
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// custom swal
+.swal2 {
+  &-container {
+    &.swal2 {
+      &-top-end {
+        top: 80px !important;
+        width: unset !important;
+        max-width: 360px !important;
+
+        .swal2 {
+          &-title {
+            width: fit-content !important;
+          }
+
+          &-icon {
+            margin: 0 !important;
+          }
+
+          &-popup {
+            display: flex !important;
+          }
+        }
+      }
+
+      &-center {
+        &.swal2-backdrop-show {
+          padding: 12px !important;
+        }
+
+        .swal2-popup {
+          padding: 44px;
+          border-radius: 20px !important;
+        }
+
+        #swal2 {
+          &-title {
+            font-size: 20px;
+            line-height: 1.5;
+            color: var(--bs-gray-900);
+            font-weight: 500;
+            margin-bottom: 8px;
+            padding: 0;
+          }
+
+          &-html-container {
+            margin: 0;
+            font-size: 16px !important;
+            color: var(--bs-gray-700);
+          }
+        }
+      }
+    }
+  }
+
+  &-modal {
+    .swal2-icon {
+      border-color: transparent !important;
+    }
+  }
+
+  &-icon {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+    border-color: currentColor !important;
+
+    &.swal2 {
+      &-warning {
+        color: var(--bs-warning) !important;
+      }
+
+      &-error {
+        color: var(--bs-danger) !important;
+
+        [class^="swal2-x-mark-line"] {
+          background-color: currentColor !important;
+        }
+      }
+
+      &-info,
+      &-question {
+        color: var(--bs-primary) !important;
+      }
+
+      &-success {
+        color: var(--bs-success) !important;
+      }
+    }
+  }
+
+  &-close {
+    box-shadow: none !important;
+  }
+}
+
+.nav {
+  .nav-link {
+    border-radius: 4px !important;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #4b5675;
+
+    &.active {
+      background-color: #ffff;
+      color: #071437 !important;
+    }
+  }
+}
+
+.quill {
+  border-radius: 8px;
+  transition: all 0.25 linear;
+
+  .ql {
+    &-toolbar {
+      border-radius: inherit !important;
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+    &-container {
+      border-radius: inherit !important;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+      min-height: 100px;
+    }
+
+    &-editor {
+      p {
+        font-size: 16px !important;
+        color: #4b5675 !important;
+        font-weight: 500;
+      }
+    }
+
+    &-formats {
+      svg {
+        height: 20px !important;
+      }
+    }
+  }
+
+  &:focus-within {
+    border: 1px solid #0c2de2 !important;
+    box-shadow: 0px 0px 2px 3px rgba(27, 132, 255, 0.16),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.16);
+    background: #fff;
+  }
+}
+
+.tippy {
+  &-box {
+    background-color: transparent !important;
+  }
+
+  &-content {
+    background-color: #fff;
+    padding: 8px !important;
+    color: #2b2730;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+  }
+
+  &-arrow {
+    display: none;
+  }
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  flex-grow: 1 !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f1f1f4;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: #f1f1f2;
+
+  .nav {
+    &-tabs {
+      width: 50%;
+      flex-grow: 1;
+    }
+
+    &-item {
+      width: 50%;
+    }
+
+    &-link {
+      width: 100%;
+      background-color: #f1f1f2;
+      border-bottom: 1px solid #f1f1f4;
+
+      &.active {
+        background-color: #fff;
+        color: #2b2730 !important;
+        border-bottom: 1px solid #f1f1f4;
+        border-radius: 50px;
+      }
+    }
+  }
+}
+
+.btn-add {
+  &:hover {
+    background: linear-gradient(90deg,
+        rgba(241, 233, 253, 0) 0%,
+        #a8d9f970 50%,
+        rgba(241, 233, 253, 0) 100%);
+  }
+}
+
+.app-main {
+  //React Date Picker
+  .react-calendar {
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    // View containers
+    &__month-view,
+    &__year-view,
+    &__decade-view,
+    &__century-view {
+      padding: 8px;
+    }
+
+    // Navigation
+    &__navigation {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      background: #f9fafb;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border-bottom: 1px solid #e5e7eb;
+
+      button {
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        padding: 8px 12px;
+        font-weight: 500;
+        color: #212121;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        transition: background-color 0.2s ease;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background-color: #ceb0fa;
+          color: #6a6a6a;
+        }
+
+        &:disabled {
+          background: transparent;
+          color: #bababa;
+        }
+      }
+    }
+
+    // Weekdays
+    &__month-view__weekdays {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e7eb;
+
+      &__weekday {
+        color: #212121;
+        font-weight: 500;
+        font-size: 0.875rem;
+        text-align: center;
+        padding: 4px;
+      }
+    }
+
+    // Tiles
+    &__tile {
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      padding: 8px;
+      margin: 1px 2px;
+      font-weight: 500;
+      color: #212121;
+      transition: all 0.2s ease;
+      min-height: 40px;
+      max-width: 45px;
+
+      &:enabled:hover {
+        background: #ceb0fa;
+        color: #6a6a6a;
+        transform: scale(1.05);
+      }
+
+      &--now {
+        background: #a8d9f9;
+        color: #6b46c1;
+        font-weight: 600;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background: #b78af7;
+          color: #fff;
+        }
+      }
+
+      &--active,
+      &:enabled:focus {
+        background: #9654f4 !important;
+        color: #fff !important;
+        font-weight: 600;
+        box-shadow: 0 2px 4px rgba(150, 84, 244, 0.3);
+      }
+
+      &:disabled {
+        background: transparent;
+        color: #bababa;
+      }
+    }
+
+    // Year, decade, century views
+    &__year-view__months__month,
+    &__decade-view__years__year,
+    &__century-view__decades__decade {
+      border-radius: 8px;
+      margin: 1px 3px;
+      padding: 0 8px;
+      width: 100%;
+      max-width: 80px;
+    }
+  }
+
+  //Phone Input
+  .phone-input {
+    .form-control {
+      border-color: #e8e8e8;
+      font-weight: 400;
+    }
+
+    .flag-dropdown {
+      border-radius: 8px 0 0 8px;
+      border-color: #e8e8e8;
+
+      .selected-flag {
+        border-radius: 8px 0 0 8px;
+      }
+    }
+  }
+}
+
+.modal {
+  //Phone Input
+  .phone-input {
+    .form-control {
+      border-color: #e8e8e8;
+      font-weight: 400;
+    }
+
+    .flag-dropdown {
+      border-radius: 8px 0 0 8px;
+      border-color: #e8e8e8;
+
+      .selected-flag {
+        border-radius: 8px 0 0 8px;
+      }
+    }
+  }
+}

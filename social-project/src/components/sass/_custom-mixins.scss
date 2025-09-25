@@ -1,0 +1,174 @@
+@import '../../_metronic/assets/sass/core/components/_variables';
+
+$primary-colors: (
+  50: $primary-50,
+  200: $primary-200,
+  500: $primary-500
+);
+
+$secondary-colors: (
+  50: $secondary-50,
+  100: $secondary-100,
+  200: $secondary-200,
+  300: $secondary-300,
+  400: $secondary-400,
+  500: $secondary-500,
+  600: $secondary-600,
+  700: $secondary-700,
+  800: $secondary-800,
+  900: $secondary-900
+);
+$yellow-colors: (
+  50: $yellow-50,
+  100: $yellow-100,
+  200: $yellow-200,
+  300: $yellow-300,
+  400: $yellow-400,
+  500: $yellow-500,
+  600: $yellow-600,
+  700: $yellow-700,
+  800: $yellow-800,
+  900: $yellow-900
+);
+
+$red-colors: (
+  50: $red-50,
+  100: $red-100,
+  200: $red-200,
+  300: $red-300,
+  400: $red-400,
+  500: $red-500,
+  600: $red-600,
+  700: $red-700,
+  800: $red-800,
+  900: $red-900
+);
+
+$green-colors: (
+  50: $green-50,
+  100: $green-100,
+  200: $green-200,
+  300: $green-300,
+  400: $green-400,
+  500: $green-500,
+  600: $green-600,
+  700: $green-700,
+  800: $green-800,
+  900: $green-900,
+);
+
+$light-gray-colors: (
+  50: $light-gray-50,
+  100: $light-gray-100,
+  200: $light-gray-200,
+  300: $light-gray-300,
+  400: $light-gray-400,
+  500: $light-gray-500,
+  600: $light-gray-600,
+  700: $light-gray-700,
+  800: $light-gray-800,
+  900: $light-gray-900
+);
+
+$medium-gray-colors: (
+  50: $medium-gray-50,
+  100: $medium-gray-100,
+  200: $medium-gray-200,
+  300: $medium-gray-300,
+  400: $medium-gray-400,
+  500: $medium-gray-500,
+  600: $medium-gray-600,
+  700: $medium-gray-700,
+  800: $medium-gray-800,
+  900: $medium-gray-900
+);
+
+$dark-gray-colors: (
+  50: $dark-gray-50,
+  100: $dark-gray-100,
+  200: $dark-gray-200,
+  300: $dark-gray-300,
+  400: $dark-gray-400,
+  500: $dark-gray-500,
+  600: $dark-gray-600,
+  700: $dark-gray-700,
+  800: $dark-gray-800,
+  900: $dark-gray-900
+);
+
+$tertiary-colors: (
+  50: $tertiary-50,
+  100: $tertiary-100,
+  200: $tertiary-200,
+  300: $tertiary-300,
+  400: $tertiary-400,
+  500: $tertiary-500,
+  600: $tertiary-600,
+  700: $tertiary-700,
+  800: $tertiary-800,
+  900: $tertiary-900
+);
+
+// Variables
+$colors: (
+  'primary': $primary-colors,
+  'secondary': $secondary-colors,
+  'yellow': $yellow-colors,
+  'red': $red-colors,
+  'green': $green-colors,
+  'light-gray': $light-gray-colors,
+  'medium-gray': $medium-gray-colors,
+  'dark-gray': $dark-gray-colors,
+  'tertiary': $tertiary-colors
+);
+
+@mixin font-style($size, $line-height: null, $important: null) {
+  font-size: $size #{$important};
+
+  @if $line-height {
+    line-height: $line-height #{$important};
+  }
+}
+
+@mixin generate-color-classes($color-name, $color-map) {
+  @each $shade, $color in $color-map {
+    $selectors: (
+      '': color,
+      'bg-': background-color,
+      'border-': border-color,
+      'fill-': fill
+    );
+
+  @each $prefix, $property in $selectors {
+    .#{$prefix}#{$color-name}-#{$shade} {
+      #{$property}: #{$color} !important;
+
+      @if $property ==color or $property ==background-color or $property ==fill {
+        opacity: var(--bs-text-opacity);
+      }
+    }
+
+    // Hover state
+    .#{$prefix}#{$color-name}-#{$shade}-hover:hover {
+      #{$property}: #{$color} !important;
+
+      @if $property ==color or $property ==background-color or $property ==fill {
+        opacity: var(--bs-text-opacity);
+      }
+    }
+
+    // Active states for border
+    @if $property ==border-color {
+      .#{$prefix}#{$color-name}-#{$shade}-active {
+        &:active,
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+          border-color: #{$color} !important;
+          box-shadow: 0px 0px 2px 3px #{$color}33 !important;
+        }
+      }
+    }
+  }
+}
+}

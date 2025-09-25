@@ -1,0 +1,77 @@
+@import '../core/components/variables';
+
+//
+// To make future updates easier consider overriding the global variables from _variables.bootstrap.scss and _variables.custom.scss for current demo in this file.
+// Note that this file is included first and variables defined in _variables.bootstrap.scss and _variables.custom.scss
+// are not accessible in this file but you can override any global variable as shown below:
+//
+
+// Bootstrap color system
+$white: #ffffff;
+
+// Gray colors
+$gray-100-dark: #1b1b29;
+$gray-200-dark: #2b2b40;
+$gray-300-dark: #323248;
+$gray-400-dark: #474761;
+$gray-500-dark: #565674;
+$gray-600-dark: #6d6d80;
+$gray-700-dark: #92929f;
+$gray-800-dark: #cdcdde;
+$gray-900-dark: #ffffff;
+
+// Primary colors
+$primary: $primary-500 !default;
+$primary-active: $primary-600 !default;
+$primary-light: $primary-200 !default;
+$primary-inverse: $white !default;
+
+// Secondary colors
+$secondary: $secondary-500 !default;
+$secondary-active: $secondary-600 !default;
+$secondary-light: $secondary-200 !default;
+$secondary-inverse: $secondary-800 !default;
+
+// Light colors
+$light: $gray-100 !default;
+$light-active: $gray-200 !default;
+$light-light: gba($gray-100, 0.75) !default;
+$light-inverse: $gray-600 !default;
+
+// Success colors
+$success: $green-500 !default;
+$success-active: $green-600 !default;
+$success-light: $green-200 !default;
+$success-inverse: $white !default;
+
+// Info colors
+$info: #8950fc !default;
+$info-active: #7337ee !default;
+$info-light: #eee5ff !default;
+$info-inverse: $white !default;
+
+// Warning colors
+$warning: $yellow-500 !default;
+$warning-active: $yellow-600 !default;
+$warning-light: $yellow-200 !default;
+$warning-inverse: $white !default;
+
+// Danger colors
+$danger: $red-500 !default;
+$danger-active: $red-600 !default;
+$danger-light: $red-200 !default;
+$danger-inverse: $white !default;
+
+// Dark colors
+$dark: $gray-900 !default;
+$dark-active: darken($gray-900, 3%) !default;
+$dark-light: $gray-200 !default;
+$dark-inverse: $white !default;
+
+// Card Box Shadow
+$card-border-enabled: true;
+$card-box-shadow: none;
+$card-box-shadow-dark: none;
+
+// Body
+$body-bg-dark: #1c1c1c;

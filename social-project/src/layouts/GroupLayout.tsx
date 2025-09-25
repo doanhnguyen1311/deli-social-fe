@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
-import MessengerSidebar from "../components/Messenger"
-import Header from "../components/Header"
-import MiniSidebar from "../components/MiniSidebar"
-import RecentActivity from "../components/Activity"
-import GroupHeader from "../components/GroupHeader"
-import GroupInfo from "../components/GroupInfo"
+import MessengerSidebar from "../component_helper/Messenger"
+import Header from "../component_helper/Header"
+import MiniSidebar from "../component_helper/MiniSidebar"
+import RecentActivity from "../component_helper/Activity"
+import GroupHeader from "../component_helper/GroupHeader"
+import GroupInfo from "../component_helper/GroupInfo"
 
 const GroupLayout = () => {
     return (

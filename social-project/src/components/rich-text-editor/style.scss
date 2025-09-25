@@ -1,0 +1,15 @@
+.quill {
+  border-radius: 12px;
+
+  &:focus-within {
+    border: none !important;
+    box-shadow: none !important;
+    background: #fff;
+  }
+
+  .ql-toolbar {
+    padding: 8px 16px;
+    border-bottom: 1px solid #EAE9EA;
+    background: #F2F3F7;
+  }
+}
