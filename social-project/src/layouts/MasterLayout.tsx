@@ -6,17 +6,21 @@ import RightSidebar from "../component_helper/RightSidebar"
 
 const MasterLayout = () => {
     return (
-        <div className='main-layout h-100vh'>
-            <div className="d-flex h-100">
-                <Sidebar/>
-                <div className="bg-white h-100vh w-100 hide-scrollbar" style={{overflowY: 'auto'}}>
+        <div className='main-layout'>
+            <div className="d-flex col-12">
+                <div className="col-2">
+                    <Sidebar />
+                </div>
+                <div className="bg-white h-100vh w-100 hide-scrollbar col-7" style={{ overflowY: 'auto' }}>
                     <Header />
                     <div className="d-flex">
                         <Outlet />
                         <RightSidebar />
                     </div>
                 </div>
-                <MessengerSidebar />
+                <div className="col-3">
+                    <MessengerSidebar />
+                </div>
             </div>
         </div>
     )
