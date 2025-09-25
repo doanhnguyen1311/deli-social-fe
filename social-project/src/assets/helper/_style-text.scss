@@ -1,0 +1,24 @@
+$weights: (thin: 100, light: 300, normal: 400, medium: 500, semibold: 600, bold: 700, extrabold: 800, black: 900);
+@each $name, $val in $weights {
+  .fw-#{$name} { font-weight: $val !important; }
+}
+
+@for $i from 1 through 10 {
+  $val: $i * 1px;
+  .tracking-#{$i}px { letter-spacing: $val !important; }
+}
+
+$textAligns: (left, center, right, justify);
+@each $align in $textAligns {
+  .text-#{$align} { text-align: $align !important; }
+}
+
+$textTransforms: (uppercase, lowercase, capitalize, normal-case);
+@each $tt in $textTransforms {
+  .text-#{$tt} { text-transform: $tt !important; }
+}
+
+$colors: (primary: #646cff, secondary: #535bf2, success: #28a745, danger: #dc3545, warning: #ffc107, info: #17a2b8, dark: #1a1a1a, light: #f9f9f9);
+@each $name, $val in $colors {
+  .text-#{$name} { color: $val !important; }
+}

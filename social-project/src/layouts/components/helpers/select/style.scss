@@ -1,0 +1,88 @@
+$bg-light: #f9f9f9;
+$bg-dark: #242424;
+$bg-hover-light: #e0e0e0;
+$bg-hover-dark: #333;
+$text-light: #333;
+$text-dark: #fff;
+
+.select-light, .select-dark {
+  width: 250px;
+  position: relative;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .selected {
+    padding: 0.6rem 1rem;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+
+    li {
+      list-style: none;
+      padding: 0.5rem 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: $bg-hover-light;
+      }
+
+      &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &.select-dark {
+    background-color: $bg-dark;
+    color: $text-dark;
+    .options li:hover {
+      background-color: $bg-hover-dark;
+    }
+  }
+
+  &.select-light {
+    background-color: $bg-light;
+    color: $text-light;
+    .options li:hover {
+      background-color: $bg-hover-light;
+    }
+  }
+
+  &.open {
+    .options {
+      max-height: 300px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  .arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s;
+  }
+}

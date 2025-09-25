@@ -1,0 +1,21 @@
+@for $i from 1 through 10 {
+    $val: $i * 10;
+  .w-#{$val}px { width: #{$val}px !important; }
+  .h-#{$val}px { height: #{$val}px !important; }
+}
+@for $i from 1 through 25 {
+  .fs-#{$i}px { font-size: #{$i}px !important; }
+}
+@for $i from 1 through 100 {
+  .p-#{$i}px { padding: #{$i}px !important; }
+  .pt-#{$i}px { padding-top: #{$i}px !important; }
+  .pr-#{$i}px { padding-right: #{$i}px !important; }
+  .pb-#{$i}px { padding-bottom: #{$i}px !important; }
+  .pl-#{$i}px { padding-left: #{$i}px !important; }
+
+  .m-#{$i}px { margin: #{$i}px !important; }
+  .mt-#{$i}px { margin-top: #{$i}px !important; }
+  .mr-#{$i}px { margin-right: #{$i}px !important; }
+  .mb-#{$i}px { margin-bottom: #{$i}px !important; }
+  .ml-#{$i}px { margin-left: #{$i}px !important; }
+}
