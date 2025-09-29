@@ -91,7 +91,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
           </button>
         </div>
         <div className="text-left">
-          <p className="fs-14 text-color-secondary lh-16 mb-12">
+          <p className="fs-14 text-color-secondary lh-16 mb-12 text-left">
             {showFullBio ? userData.bio : `${userData.bio.substring(0, 120)}...`}
           </p>
           <button 
