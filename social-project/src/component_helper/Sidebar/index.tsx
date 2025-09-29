@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Globe, ExternalLink, MoreHorizontal } from 'lucide-react';
 import avatar from '../../assets/imgs/tindepchai.jpg';
-import styles from './index.module.css';
 
 interface StoryHighlight {
   id: string;
@@ -53,50 +52,50 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
   ];
 
   return (
-    <div className={styles.sidebar}>
+    <div className="w-476 h-100vh overflow-y-auto bg-white p-16 d-flex flex-column hide-scrollbar">
       {/* Profile Card */}
-      <div className={styles.profileCard}>
-        <div className={styles.profileHeader}>
-          <div className={styles.avatarContainer}>
-            <img src={userData.avatar} alt={userData.name} className={styles.avatar} />
-            {userData.isOnline && <div className={styles.onlineIndicator}></div>}
+      <div className="bg-white radius-16 p-24 text-center">
+        <div className="mb-24">
+          <div className="relative d-inline-block mb-16">
+            <img src={userData.avatar} alt={userData.name} className="avatar-lg radius-50 object-cover box-shadow" />
+            {userData.isOnline && <div className="status-badge"></div>}
           </div>
-          <h2 className={styles.userName}>{userData.name}</h2>
-          <p className={styles.username}>{userData.username}</p>
-          <p className={styles.location}>{userData.location}</p>
+          <h2 className="fs-20 fw-semibold text-color mb-8">{userData.name}</h2>
+          <p className="fs-14 text-gray mb-8">{userData.username}</p>
+          <p className="fs-13 text-gray">{userData.location}</p>
         </div>
 
         {/* Stats */}
-        <div className={styles.stats}>
-          <div className={styles.statItem}>
-            <span className={styles.statNumber}>{userData.posts}</span>
-            <span className={styles.statLabel}>Posts</span>
+        <div className="d-flex justify-between pt-24 border-top-gray">
+          <div className="d-flex flex-column align-center gap-4px">
+            <span className="fs-20 fw-semibold text-color">{userData.posts}</span>
+            <span className="fs-12 text-gray">POSTS</span>
           </div>
-          <div className={styles.statItem}>
-            <span className={styles.statNumber}>{userData.followers}</span>
-            <span className={styles.statLabel}>Followers</span>
+          <div className="d-flex flex-column align-center gap-4px">
+            <span className="fs-20 fw-semibold text-color">{userData.followers}</span>
+            <span className="fs-12 text-gray">FOLLOWERS</span>
           </div>
-          <div className={styles.statItem}>
-            <span className={styles.statNumber}>{userData.following}</span>
-            <span className={styles.statLabel}>Following</span>
+          <div className="d-flex flex-column align-center gap-4px">
+            <span className="fs-20 fw-semibold text-color">{userData.following}</span>
+            <span className="fs-12 text-gray">FOLLOWING</span>
           </div>
         </div>
       </div>
 
       {/* About Me */}
-      <div className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h3 className={styles.sectionTitle}>About Me</h3>
-          <button className={styles.moreButton}>
+      <div className="bg-white radius-12 p-24">
+        <div className="d-flex justify-between align-center mb-16">
+          <h3 className="fs-16 fw-semibold text-color">About Me</h3>
+          <button className="btn-icon radius-50 cursor-pointer">
             <MoreHorizontal size={16} />
           </button>
         </div>
-        <div className={styles.bioContainer}>
-          <p className={styles.bio}>
+        <div className="text-left">
+          <p className="fs-14 text-color-secondary lh-16 mb-12">
             {showFullBio ? userData.bio : `${userData.bio.substring(0, 120)}...`}
           </p>
           <button 
-            className={styles.readMoreButton}
+            className="btn-link text-primary fw-medium fs-14 cursor-pointer"
             onClick={() => setShowFullBio(!showFullBio)}
           >
             {showFullBio ? 'Read Less' : 'Read More'}
@@ -105,59 +104,59 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
       </div>
 
       {/* Story Highlights */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>My Story Highlights</h3>
-        <div className={styles.storyGrid}>
+      <div className="bg-white radius-12 p-24">
+        <h3 className="fs-16 fw-semibold text-color mb-16">My Story Highlights</h3>
+        <div className="d-flex gap-16px overflow-x-auto py-8 hide-scrollbar">
           {storyHighlights.map((story) => (
-            <div key={story.id} className={styles.storyItem}>
-              <div className={styles.storyImage}>
-                <img src={story.image} alt={story.label} />
+            <div key={story.id} className="d-flex flex-column align-center gap-8px min-w-60">
+              <div className="w-60 h-60 radius-50 overflow-hidden border-light hover-border-primary cursor-pointer">
+                <img src={story.image} alt={story.label} className="w-100 h-100 object-cover" />
               </div>
-              <span className={styles.storyLabel}>{story.label}</span>
+              <span className="fs-12 text-gray text-center">{story.label}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Contact Information */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Contact Information</h3>
-        <div className={styles.contactList}>
-          <div className={styles.contactItem}>
-            <div className={styles.contactIcon}>
-              <Phone size={16} />
+      <div className="bg-white radius-12 p-24">
+        <h3 className="fs-16 fw-semibold text-color mb-16">Contact Information</h3>
+        <div className="d-flex flex-column gap-16px">
+          <div className="d-flex align-center gap-12px p-12 radius-8 cursor-pointer hover-bg-gray">
+            <div className="w-40 h-40 bg-gray radius-8 d-flex align-center justify-center">
+              <Phone size={16} className="text-gray" />
             </div>
-            <div className={styles.contactInfo}>
-              <span className={styles.contactLabel}>Phone Number</span>
-              <span className={styles.contactValue}>{userData.phone}</span>
+            <div className="flex-1">
+              <span className="fs-12 text-gray fw-medium d-block">Phone Number</span>
+              <span className="fs-14 text-color d-block mt-4">{userData.phone}</span>
             </div>
-            <button className={styles.contactAction}>
+            <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
             </button>
           </div>
           
-          <div className={styles.contactItem}>
-            <div className={styles.contactIcon}>
-              <Mail size={16} />
+          <div className="d-flex align-center gap-12px p-12 radius-8 cursor-pointer hover-bg-gray">
+            <div className="w-40 h-40 bg-gray radius-8 d-flex align-center justify-center">
+              <Mail size={16} className="text-gray" />
             </div>
-            <div className={styles.contactInfo}>
-              <span className={styles.contactLabel}>Email Address</span>
-              <span className={styles.contactValue}>{userData.email}</span>
+            <div className="flex-1">
+              <span className="fs-12 text-gray fw-medium d-block">Email Address</span>
+              <span className="fs-14 text-color d-block mt-4">{userData.email}</span>
             </div>
-            <button className={styles.contactAction}>
+            <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
             </button>
           </div>
           
-          <div className={styles.contactItem}>
-            <div className={styles.contactIcon}>
-              <Globe size={16} />
+          <div className="d-flex align-center gap-12px p-12 radius-8 cursor-pointer hover-bg-gray">
+            <div className="w-40 h-40 bg-gray radius-8 d-flex align-center justify-center">
+              <Globe size={16} className="text-gray" />
             </div>
-            <div className={styles.contactInfo}>
-              <span className={styles.contactLabel}>Website</span>
-              <span className={styles.contactValue}>{userData.website}</span>
+            <div className="flex-1">
+              <span className="fs-12 text-gray fw-medium d-block">Website</span>
+              <span className="fs-14 text-color d-block mt-4">{userData.website}</span>
             </div>
-            <button className={styles.contactAction}>
+            <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
             </button>
           </div>

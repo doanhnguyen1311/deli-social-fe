@@ -283,12 +283,20 @@ select {
 	border-radius: 8px;
 }
 
+.radius-12 {
+    border-radius: 12px;
+}
+
+.radius-16 {
+    border-radius: 16px;
+}
+
 .radius-24 {
 	border-radius: 24px;
 }
 
 .radius-50 {
-	border-radius: 50%;
+	border-radius: 50% !important;
 }
 
 .radius-rigth-4 {
@@ -311,6 +319,15 @@ select {
 
 .grid-cols-auto {
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Display Block */
+.d-block {
+    display: block;
+}
+
+.d-inline-block {
+    display: inline-block;
 }
 
 /* Flex */
@@ -403,6 +420,10 @@ select {
 	gap: 20px !important;
 }
 
+.gap-24px {
+	gap: 24px !important;
+}
+
 .gap-28px {
 	gap: 28px !important;
 }
@@ -446,6 +467,10 @@ select {
 
 .h-40 {
 	height: 40px;
+}
+
+.h-60 {
+    height: 60px;
 }
 
 .h-80 {
@@ -524,8 +549,16 @@ select {
 	width: 50px;
 }
 
+.w-60 {
+    width: 60px;
+}
+
 .w-200 {
 	width: 200px;
+}
+
+.w-476 {
+    width: 476px;
 }
 
 .w-50per {
@@ -534,6 +567,10 @@ select {
 
 .w-100 {
 	width: 100%;
+}
+
+.min-w-60 {
+    min-width: 60px;
 }
 
 .min-w-75px {
@@ -556,7 +593,17 @@ select {
 	max-width: 300px !important;
 }
 
+/* Line height */
+.lh-16 {
+    line-height: 1.6;
+}
+
 /* text */
+
+.text-primary {
+    color: #6366f1;
+}
+
 .text-center {
 	text-align: center;
 }
@@ -677,6 +724,24 @@ select {
 	border-left: 1px solid #e7edf2;
 }
 
+.border-light {
+    border: 2px solid #e5e7eb;
+    transition: border-color 0.2s ease;
+}
+
+.border-top-gray {
+    border-top: 1px solid #f3f4f6;
+}
+
+/* Hover states */
+.hover-border-primary:hover {
+    border-color: #6366f1 !important;
+}
+
+.hover-bg-gray:hover {
+    background-color: #f9fafb !important;
+}
+
 /* Position */
 .relative {
 	position: relative;
@@ -790,6 +855,31 @@ select {
 	background-color: #3e8a57;
 }
 
+.btn-icon {
+    background: none;
+    border: none;
+    color: #6b7280;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.btn-link:hover {
+    opacity: 0.8;
+}
+
 /* Cursor */
 .cursor-pointer {
 	cursor: pointer;
@@ -859,6 +949,14 @@ th {
 	overflow-y: auto;
 }
 
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
 // Dot
 .dot-green {
 	display: block;
@@ -910,6 +1008,18 @@ th {
 	animation: slideDown 0.3s ease-out forwards;
 }
 
+/* Status Badge - Chấm online indicator */
+.status-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    background: #10b981;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+}
+
 // Keyframes
 @keyframes slideDown {
 	0% { 
@@ -918,4 +1028,11 @@ th {
 	100% { 
 		transform: translateY(0);
 	}
+}
+
+/* Responsive - Sidebar */
+@media (max-width: 768px) {
+    .w-476 {
+        width: 100%;
+    }
 }
