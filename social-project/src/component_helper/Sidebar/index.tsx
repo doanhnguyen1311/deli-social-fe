@@ -128,7 +128,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             </div>
             <div className="flex-1">
               <span className="fs-12 text-gray fw-medium d-block">Phone Number</span>
-              <span className="fs-14 text-color d-block mt-4">{userData.phone}</span>
+              <span className="fs-14 text-color d-block mt-8">{userData.phone}</span>
             </div>
             <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
@@ -141,7 +141,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             </div>
             <div className="flex-1">
               <span className="fs-12 text-gray fw-medium d-block">Email Address</span>
-              <span className="fs-14 text-color d-block mt-4">{userData.email}</span>
+              <span className="fs-14 text-color d-block mt-8">{userData.email}</span>
             </div>
             <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
@@ -154,7 +154,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             </div>
             <div className="flex-1">
               <span className="fs-12 text-gray fw-medium d-block">Website</span>
-              <span className="fs-14 text-color d-block mt-4">{userData.website}</span>
+              <span className="fs-14 text-color d-block mt-8">{userData.website}</span>
             </div>
             <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
