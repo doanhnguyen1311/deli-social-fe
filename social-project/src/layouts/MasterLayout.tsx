@@ -11,7 +11,7 @@ const MasterLayout = () => {
                 <Sidebar/>
                 <div className="bg-white h-100vh w-100 hide-scrollbar" style={{overflowY: 'auto'}}>
                     <div className="d-flex">
-                        <div className="bg-gray d-flex flex-column gap-8px flex-1 py-16 px-16">
+                        <div className="bg-gray d-flex flex-column gap-16px flex-1 py-16 px-16">
                             <Header />
                             <Outlet />
                         </div>
