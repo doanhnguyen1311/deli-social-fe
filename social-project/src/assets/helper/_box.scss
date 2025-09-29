@@ -3,16 +3,6 @@
   .border-#{$val}px { border-width: #{$val}px !important; }
   .rounded-#{$val}px { border-radius: #{$val}px !important; }
 }
-.d-flex { display: flex !important; }
-.flex-row { flex-direction: row !important; }
-.flex-col { flex-direction: column !important; }
-.justify-start { justify-content: flex-start !important; }
-.justify-center { justify-content: center !important; }
-.justify-end { justify-content: flex-end !important; }
-.justify-between { justify-content: space-between !important; }
-.items-start { align-items: flex-start !important; }
-.items-center { align-items: center !important; }
-.items-end { align-items: flex-end !important; }
 
 .grid { display: grid !important; }
 @for $i from 1 through 10 {

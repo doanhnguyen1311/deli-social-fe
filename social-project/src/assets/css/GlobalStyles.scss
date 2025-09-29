@@ -311,8 +311,13 @@ select {
 	border-radius: 8px;
 }
 
+<<<<<<< HEAD
 .radius-10 {
     border-radius: 10px;
+=======
+.radius-12 {
+    border-radius: 12px;
+>>>>>>> feature/edit-sidebar
 }
 
 .radius-16 {
@@ -324,7 +329,7 @@ select {
 }
 
 .radius-50 {
-	border-radius: 50%;
+	border-radius: 50% !important;
 }
 
 .radius-rigth-4 {
@@ -347,6 +352,15 @@ select {
 
 .grid-cols-auto {
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Display Block */
+.d-block {
+    display: block;
+}
+
+.d-inline-block {
+    display: inline-block;
 }
 
 /* Flex */
@@ -447,6 +461,10 @@ select {
 	gap: 20px !important;
 }
 
+.gap-24px {
+	gap: 24px !important;
+}
+
 .gap-28px {
 	gap: 28px !important;
 }
@@ -492,8 +510,13 @@ select {
 	height: 40px;
 }
 
+<<<<<<< HEAD
 .h-64 {
     height: 64px;
+=======
+.h-60 {
+    height: 60px;
+>>>>>>> feature/edit-sidebar
 }
 
 .h-80 {
@@ -572,12 +595,21 @@ select {
 	width: 50px;
 }
 
+.w-60 {
+    width: 60px;
+}
+
 .w-200 {
 	width: 200px;
 }
 
+<<<<<<< HEAD
 .w-280 {
     width: 280px;
+=======
+.w-476 {
+    width: 476px;
+>>>>>>> feature/edit-sidebar
 }
 
 .w-50per {
@@ -586,6 +618,10 @@ select {
 
 .w-100 {
 	width: 100%;
+}
+
+.min-w-60 {
+    min-width: 60px;
 }
 
 .min-w-75px {
@@ -608,15 +644,26 @@ select {
 	max-width: 300px !important;
 }
 
+<<<<<<< HEAD
 .max-w-500 {
     max-width: 500px;
 }
 
 .max-w-1200 {
     max-width: 1200px;
+=======
+/* Line height */
+.lh-16 {
+    line-height: 1.6;
+>>>>>>> feature/edit-sidebar
 }
 
 /* text */
+
+.text-primary {
+    color: #6366f1;
+}
+
 .text-center {
 	text-align: center;
 }
@@ -751,8 +798,27 @@ select {
 	border-left: 1px solid #e7edf2;
 }
 
+<<<<<<< HEAD
 .border-left-gray {
     border-left: 1px solid #e5e7eb;
+=======
+.border-light {
+    border: 2px solid #e5e7eb;
+    transition: border-color 0.2s ease;
+}
+
+.border-top-gray {
+    border-top: 1px solid #f3f4f6;
+}
+
+/* Hover states */
+.hover-border-primary:hover {
+    border-color: #6366f1 !important;
+}
+
+.hover-bg-gray:hover {
+    background-color: #f9fafb !important;
+>>>>>>> feature/edit-sidebar
 }
 
 /* Position */
@@ -962,6 +1028,14 @@ th {
 	overflow-y: auto;
 }
 
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
 // Dot
 .dot-green {
 	display: block;
@@ -1013,6 +1087,7 @@ th {
 	animation: slideDown 0.3s ease-out forwards;
 }
 
+<<<<<<< HEAD
 /* Scrollbar mỏng hơn cho user list */
 .hide-scrollbar-thin {
     overflow: auto;
@@ -1052,6 +1127,18 @@ th {
 .nav-button-active {
     background: rgba(164, 103, 217, 0.1);
     color: var(--default-color);
+=======
+/* Status Badge - Chấm online indicator */
+.status-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    background: #10b981;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+>>>>>>> feature/edit-sidebar
 }
 
 // Keyframes
@@ -1064,6 +1151,7 @@ th {
 	}
 }
 
+<<<<<<< HEAD
 /* Responsive */
 @media (max-width: 768px) {
     .w-280 {
@@ -1125,4 +1213,11 @@ th {
     .gap-8px {
         gap: 4px;
     }
+=======
+/* Responsive - Sidebar */
+@media (max-width: 768px) {
+    .w-476 {
+        width: 100%;
+    }
+>>>>>>> feature/edit-sidebar
 }
