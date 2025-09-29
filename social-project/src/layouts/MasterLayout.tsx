@@ -10,6 +10,7 @@ const MasterLayout = () => {
             <div className="d-flex h-100">
                 <Sidebar/>
                 <div className="bg-white h-100vh w-100 hide-scrollbar" style={{overflowY: 'auto'}}>
+                    <Header />
                     <div className="d-flex">
                         <div className="bg-gray d-flex flex-column gap-8px flex-1 py-16 px-16">
                             <Header />
@@ -18,6 +19,7 @@ const MasterLayout = () => {
                         <RightSidebar />
                     </div>
                 </div>
+                <MessengerSidebar />
             </div>
         </div>
     )
