@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Users, Tv, UserCheck, MonitorDot } from 'lucide-react';
-import styles from './index.module.css';
 
 interface HeaderProps {
   activeTab?: 'feeds' | 'people' | 'watch' | 'groups';
@@ -10,55 +9,57 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds' }) => {
   const [currentTab, setCurrentTab] = useState(activeTab);
 
   const navItems = [
-    { 
-      key: 'feeds', 
-      label: 'Feeds', 
-      icon: <MonitorDot size={16}/> 
+    {
+      key: 'feeds',
+      label: 'Feeds',
+      icon: <MonitorDot size={16}/>
     },
-    { 
-      key: 'people', 
-      label: 'People', 
-      icon: <Users size={16} /> 
+    {
+      key: 'people',
+      label: 'People',
+      icon: <Users size={16} />
     },
-    { 
-      key: 'watch', 
-      label: 'Watch', 
-      icon: <Tv size={16} /> 
+    {
+      key: 'watch',
+      label: 'Watch',
+      icon: <Tv size={16} />
     },
-    { 
-      key: 'groups', 
-      label: 'Groups', 
-      icon: <UserCheck size={16} /> 
+    {
+      key: 'groups',
+      label: 'Groups',
+      icon: <UserCheck size={16} />
     }
   ];
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
+    <header className="bg-white h-64 py-8 px-16 radius-24 d-flex align-center justify-between sticky top-16px z-100">
+      <div className="w-100 max-w-1200 mx-auto d-flex align-center justify-between">
         {/* Logo Section */}
-        <div className={styles.logoSection}>
-          <div className={styles.logo}>
-            <div className={styles.logoIcon}>V</div>
+        <div className="d-flex align-center gap-12px">
+          <div className="d-flex align-center justify-center">
+            <div className="w-40 h-40 bg-gradient-purple text-white d-flex align-center justify-center radius-10 fs-20 font-bold">
+              V
+            </div>
           </div>
-          <div className={styles.brandInfo}>
-            <h1 className={styles.brandName}>Deli Social</h1>
-            <p className={styles.brandTagline}>Social Network</p>
+          <div className="d-flex flex-column gap-2px">
+            <h1 className="fs-18 fw-semibold text-color lh-12">Deli Social</h1>
+            <p className="fs-12 text-gray lh-12">Social Network</p>
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className={styles.navigation}>
-          <ul className={styles.navList}>
+        <nav className="flex-1 d-flex justify-end max-w-500">
+          <ul className="d-flex gap-8px list-none">
             {navItems.map((item) => (
-              <li key={item.key} className={styles.navItem}>
+              <li key={item.key} className="d-flex">
                 <button
-                  className={`${styles.navButton} ${
-                    currentTab === item.key ? styles.active : ''
+                  className={`nav-button d-flex flex-column align-center gap-6px py-8 px-16 text-gray fs-14 fw-medium cursor-pointer radius-16 ${
+                    currentTab === item.key ? 'nav-button-active' : ''
                   }`}
                   onClick={() => setCurrentTab(item.key as typeof currentTab)}
                 >
-                  {item.icon && <span className={styles.navIcon}>{item.icon}</span>}
-                  <span className={styles.navLabel}>{item.label}</span>
+                  {item.icon && <span className="d-flex align-center justify-center">{item.icon}</span>}
+                  <span className="fs-14 nav-label">{item.label}</span>
                 </button>
               </li>
             ))}

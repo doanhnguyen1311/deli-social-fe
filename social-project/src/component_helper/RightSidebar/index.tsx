@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from './index.module.css';
 
 interface User {
   id: number;
@@ -20,23 +19,29 @@ const RightSideBar: React.FC = () => {
   }));
 
   return (
-    <div className={styles.rightSideBar}>
+    <div className="w-280 h-100vh bg-white border-left-gray d-flex flex-column">
       {/* Tab Navigation */}
-      <div className={styles.tabContainer}>
-        <button 
-          className={`${styles.tab} ${activeTab === 'newest' ? styles.active : ''}`}
+      <div className="d-flex bg-purple-light p-4 mx-16 mt-12 mb-12 radius-8 gap-2px">
+        <button
+          className={`flex-1 py-8 px-12 text-gray fs-13 fw-medium cursor-pointer radius-6 text-center tab-button ${
+            activeTab === 'newest' ? 'tab-active' : ''
+          }`}
           onClick={() => setActiveTab('newest')}
         >
           Newest
         </button>
-        <button 
-          className={`${styles.tab} ${activeTab === 'active' ? styles.active : ''}`}
+        <button
+          className={`flex-1 py-8 px-12 text-gray fs-13 fw-medium cursor-pointer radius-6 text-center tab-button ${
+            activeTab === 'active' ? 'tab-active' : ''
+          }`}
           onClick={() => setActiveTab('active')}
         >
           Active
         </button>
-        <button 
-          className={`${styles.tab} ${activeTab === 'popular' ? styles.active : ''}`}
+        <button
+          className={`flex-1 py-8 px-12 text-gray fs-13 fw-medium cursor-pointer radius-6 text-center tab-button ${
+            activeTab === 'popular' ? 'tab-active' : ''
+          }`}
           onClick={() => setActiveTab('popular')}
         >
           Popular
@@ -44,15 +49,15 @@ const RightSideBar: React.FC = () => {
       </div>
 
       {/* User List */}
-      <div className={styles.userList}>
+      <div className="flex-1 overflow-y-auto py-8 hide-scrollbar-thin">
         {users.map((user) => (
-          <div key={user.id} className={styles.userItem}>
-            <div className={styles.avatar}>
-              <img src={user.avatar} alt={user.name} />
+          <div key={user.id} className="d-flex align-center py-12 px-16 cursor-pointer hover-bg-light">
+            <div className="w-40 h-40 mr-12">
+              <img src={user.avatar} alt={user.name} className="w-100 h-100 radius-50 object-cover border-light" />
             </div>
-            <div className={styles.userInfo}>
-              <div className={styles.userName}>{user.name}</div>
-              <div className={styles.lastActive}>{user.lastActive}</div>
+            <div className="flex-1 overflow-hidden">
+              <div className="fs-14 fw-medium text-color mb-2 text-ellipsis">{user.name}</div>
+              <div className="fs-12 text-gray">{user.lastActive}</div>
             </div>
           </div>
         ))}
