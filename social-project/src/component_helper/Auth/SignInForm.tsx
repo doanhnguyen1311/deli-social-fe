@@ -38,7 +38,7 @@ const SignInForm: React.FC = () => {
     return (
         <div className="form-container sign-in">
             {/* onSubmit={handleSubmit} */}
-            <form onSubmit={handleSubmit}>
+            <form>
                 <h1>Sign In</h1>
                 <SocialIcons />
                 <span>or use your email password</span>
@@ -57,8 +57,8 @@ const SignInForm: React.FC = () => {
                     required
                 />
                 <a href="#">Forget Your Password?</a>
-                {/* <Link to={'feeds'}><button type="submit">Sign In</button></Link> */}
-                <button type="submit">Sign In</button>
+                <Link to={'feeds'}><button type="submit">Sign In</button></Link>
+                {/* <button type="submit">Sign In</button> */}
             </form>
         </div>
     );

@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { EllipsisVertical, ThumbsUp, CornerUpLeft, MessageCircleMore } from 'lucide-react';
+import { EllipsisVertical, ThumbsUp, CornerUpLeft, MessageCircleMore, MessageSquare, Share2, Bookmark } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 import { getAllPostByUserId } from '../../../api/authAPI';
 import type { Post } from '../../../api/authAPI';
-import styles from '../index.module.css';
 
 // Reactions
 import like from '../../../assets/imgs/like.jpg';
@@ -15,40 +14,79 @@ import sad from '../../../assets/imgs/sad.jpg';
 import angry from '../../../assets/imgs/angry.jpg';
 
 const reactions = [
-  { name: "like", icon: like },
-  { name: "love", icon: love },
-  { name: "care", icon: care },
-  { name: "haha", icon: haha },
-  { name: "wow", icon: wow },
-  { name: "sad", icon: sad },
-  { name: "angry", icon: angry },
+  { name: "like",  icon: like,  color: "text-blue-500" },
+  { name: "love",  icon: love,  color: "text-red-500" },
+  { name: "care",  icon: care,  color: "text-orange-500" },
+  { name: "haha",  icon: haha,  color: "text-yellow-500" },
+  { name: "wow",   icon: wow,   color: "text-purple-500" },
+  { name: "sad",   icon: sad,   color: "text-gray-500" },
+  { name: "angry", icon: angry, color: "text-red-700" },
+];
+
+// Mock data
+const mockPosts: Post[] = [
+  {
+    id: 1,
+    userId: "user-123",
+    content: "Habitant morbi tristique senectus et netus et. Suspendisse sed nisi lacus sed viverra. Dolor morbi non arcu risus quis varius. #amazing #great #lifetime #uiux #machinelearning",
+    mediaList: [
+      {
+        mediaId: "media-001",
+        type: "IMAGE",
+        url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop"
+      }
+    ],
+    likeCount: 12,
+    commentCount: 25,
+    visibility: "PUBLIC",
+    createdAt: new Date(Date.now() - 2 * 60000).toISOString(),
+    updatedAt: new Date(Date.now() - 2 * 60000).toISOString()
+  },
+  {
+    id: 2,
+    userId: "user-123",
+    content: "Just finished an amazing project! The team worked incredibly hard and the results are outstanding. Excited to share more details soon!",
+    mediaList: [],
+    likeCount: 45,
+    commentCount: 12,
+    visibility: "PUBLIC",
+    createdAt: new Date(Date.now() - 3600000).toISOString(),
+    updatedAt: new Date(Date.now() - 3600000).toISOString()
+  },
+  {
+    id: 3,
+    userId: "user-123",
+    content: "Beautiful sunset today. Nature never ceases to amaze me. #nature #photography #sunset",
+    mediaList: [
+      {
+        mediaId: "media-002",
+        type: "IMAGE",
+        url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop"
+      }
+    ],
+    likeCount: 89,
+    commentCount: 34,
+    visibility: "PUBLIC",
+    createdAt: new Date(Date.now() - 7200000).toISOString(),
+    updatedAt: new Date(Date.now() - 7200000).toISOString()
+  }
 ];
 
 const Activity: React.FC = () => {
   const { user } = useAuth();
-
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  const [loading, setLoading] = useState(true);
-
+  const [posts, setPosts] = useState<Post[]>(mockPosts);
+  const [loading, setLoading] = useState(false);
   const [showMenu, setShowMenu] = useState<number | null>(null);
-
   const [isExpanded, setIsExpanded] = useState<number | null>(null);
-
   const [selectedReaction, setSelectedReaction] = useState<{ [key: number]: string | null }>({});
-
   const [showReactions, setShowReactions] = useState<number | null>(null);
-
   const [showShareMenu, setShowShareMenu] = useState<number | null>(null);
-
   const menuRef = useRef<HTMLDivElement>(null);
-
   const shareMenuRef = useRef<HTMLDivElement>(null);
-  
   const timeoutRef = useRef<number | null>(null);
 
-  // Gọi API lấy bài post
   useEffect(() => {
+    // Uncomment để sử dụng API thật
     if (!user?.id) return;
     getAllPostByUserId(user.id)
       .then(data => setPosts(data.content))
@@ -56,7 +94,6 @@ const Activity: React.FC = () => {
       .finally(() => setLoading(false));
   }, [user?.id]);
 
-  // Ẩn menu khi click bên ngoài
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -80,173 +117,201 @@ const Activity: React.FC = () => {
   };
 
   const formatReactionLabel = (postId: number) => {
-    const r = selectedReaction[postId]; // r: string | null | undefined
+    const r = selectedReaction[postId];
     return r ? r.charAt(0).toUpperCase() + r.slice(1) : "Like";
   };
 
   if (loading) return <p>Đang tải bài viết...</p>;
 
   return (
-    <div className={styles.activity}>
-      <ul className={styles.activity_list}>
+    <div className="pt-16">
+      <div className="d-flex flex-column gap-24px">
         {posts.map(post => {
           const currentReaction = reactions.find(r => r.name === selectedReaction[post.id]);
+          const reactionColor = currentReaction?.color ?? "text-gray-800";
           return (
-            <li key={post.id} className={styles.activity_item}>
-              <div className={styles.activity_avatar}>
-                <img src={user?.profile.avatarUrl} alt="avatar" className={styles.item_avatar} />
-              </div>
-              <div className={styles.activity_content}>
-                <div className={styles.activity_header}>
-                  <div className={styles.post_meta}>
-                    <p><span className='cursor-pointer'>{user?.username}</span> posted an update</p>
-                    <div className={styles.date}>{new Date(post.createdAt).toLocaleString()}</div>
+            <div key={post.id} className="bg-white radius-24 p-16 box-shadow">
+              {/* Header */}
+              <div className="d-flex justify-between align-center mb-16">
+                <div className="d-flex align-center gap-12px">
+                  <img 
+                    src={user?.profile?.avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face"} 
+                    alt="avatar" 
+                    className="w-40 h-40 radius-50 object-cover"
+                  />
+                  <div className='d-flex flex-column gap-8px'>
+                    <div className="fs-14 fw-semibold text-color">
+                      {user?.username || "David Thompson"}
+                    </div>
+                    <div className="fs-12 text-gray">
+                      {new Date(post.createdAt).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric'
+                      })} at {new Date(post.createdAt).toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </div>
                   </div>
-                  <div
-                    className={styles.more_icon}
-                    ref={menuRef}
+                </div>
+                <div className="relative" ref={menuRef}>
+                  <button
+                    className="btn-icon radius-50 cursor-pointer"
                     onClick={() => setShowMenu(showMenu === post.id ? null : post.id)}
                   >
                     <EllipsisVertical size={16} />
-                  </div>
+                  </button>
                   {showMenu === post.id && (
-                    <div className={styles.menu}>
-                      <div className={`${styles.menu_item} ${styles.menu_first}`}>Mark as Favorite</div>
-                      <div className={`${styles.menu_item} ${styles.menu_second}`}>Delete</div>
+                    <div className="dropdown-menu">
+                      <div className="dropdown-item">Mark as Favorite</div>
+                      <div className="dropdown-item">Delete</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="mb-16">
+                <p className="fs-14 text-color lh-16 mb-12">
+                  {post.content}
+                </p>
+                {post.mediaList && post.mediaList.length > 0 && (
+                  <div className="post-media-container">
+                    {post.mediaList.map(media => (
+                      <div key={media.mediaId} className="post-media-item">
+                        <img 
+                          src={media.url || `https://com.delichat.online/media/${media.mediaId}`} 
+                          alt="Media"
+                          className="w-100 h-100 object-cover cursor-pointer"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="d-flex align-center justify-between py-12 border-top-light">
+                {/* Like */}
+                <div
+                  className="post-action-button relative"
+                  onMouseEnter={() => handleMouseEnter(post.id)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => {
+                    setSelectedReaction(prev => ({
+                      ...prev,
+                      [post.id]: prev[post.id] ? null : "like"
+                    }));
+                  }}
+                >
+                  <div className="d-flex align-center gap-8px">
+                    {currentReaction ? (
+                      <img src={currentReaction.icon} alt={currentReaction.name} className="w-18 h-18" />
+                    ) : (
+                      <ThumbsUp size={18} />
+                    )}
+                    <span className={`fs-14 ${reactionColor}`}>
+                      {post.likeCount} {formatReactionLabel(post.id)}
+                    </span>
+                  </div>
+                  {showReactions === post.id && (
+                    <div className="reaction-popup">
+                      {reactions.map(reaction => (
+                        <img
+                          key={reaction.name}
+                          src={reaction.icon}
+                          alt={reaction.name}
+                          className="reaction-icon"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedReaction(prev => ({
+                              ...prev,
+                              [post.id]: prev[post.id] === reaction.name ? null : reaction.name
+                            }));
+                            setShowReactions(null);
+                          }}
+                        />
+                      ))}
                     </div>
                   )}
                 </div>
 
-                <div className={styles.activity_inner}>
-                  <div className={styles.activity_container}>
-                    <div className={styles.activity_inner_text}>
-                      <span>{post.content}</span>
-                    </div>
-                    {post.mediaList?.length > 0 && (
-                      <ul className={styles.activity_media_list}>
-                        {post.mediaList.map(media => (
-                          <li key={media.mediaId} className={styles.media_list_item}>
-                            <div className={styles.media_item_thumbnail}>
-                              <img src={`https://com.delichat.online/media/${media.mediaId}`} alt="Media" />
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                {/* Comment */}
+                <div
+                  className="post-action-button"
+                  onClick={() => setIsExpanded(isExpanded === post.id ? null : post.id)}
+                >
+                  <div className="d-flex align-center gap-8px">
+                    <MessageSquare size={18} />
+                    <span className="fs-14">{post.commentCount} Comments</span>
                   </div>
                 </div>
 
-                <div className={styles.activity_action}>
-                  {/* Like */}
+                {/* Share */}
+                <div className="relative" ref={shareMenuRef}>
                   <div
-                    className={`${styles.generic_button_reaction} ${styles.reactionWrapper}`}
-                    onMouseEnter={() => handleMouseEnter(post.id)}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => {
-                      setSelectedReaction(prev => ({
-                        ...prev,
-                        [post.id]: prev[post.id] ? null : "like"
-                      }));
-                    }}
-                  >
-                    <div className="d-flex align-center gap-4px">
-                      {selectedReaction[post.id] ? (
-                        <img
-                          src={currentReaction?.icon}
-                          alt={selectedReaction[post.id] || ""}
-                          className={styles.reaction_icon_selected}
-                        />
-                      ) : (
-                        <ThumbsUp size={16} />
-                      )}
-                      <span>
-                        {formatReactionLabel(post.id)}
-                      </span>
-                    </div>
-                    {showReactions === post.id && (
-                      <div className={styles.reaction_popup}>
-                        {reactions.map(reaction => (
-                          <img
-                            key={reaction.name}
-                            src={reaction.icon}
-                            alt={reaction.name}
-                            className={styles.reaction_icon}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedReaction(prev => ({
-                                ...prev,
-                                [post.id]: prev[post.id] === reaction.name ? null : reaction.name
-                              }));
-                              setShowReactions(null);
-                            }}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Comment */}
-                  <div className={styles.generic_button_comment}>
-                    <div
-                      className='d-flex align-center gap-4px'
-                      onClick={() => setIsExpanded(isExpanded === post.id ? null : post.id)}
-                    >
-                      <span>Comment</span>
-                      <span className={styles.comment_count}>{post.commentCount}</span>
-                    </div>
-                  </div>
-
-                  {/* Share */}
-                  <div
-                    className={styles.generic_button_share}
+                    className="post-action-button"
                     onClick={() => setShowShareMenu(showShareMenu === post.id ? null : post.id)}
-                    ref={shareMenuRef}
                   >
-                    <span>Share</span>
-                    {showShareMenu === post.id && (
-                      <div className={styles.shareMenu}>
-                        <div className={`${styles.menu_item} ${styles.menu_first} d-flex align-center gap-8px`}>
-                          <CornerUpLeft size={16} />Share on Activity
-                        </div>
-                        <div className={`${styles.menu_item} ${styles.menu_second} d-flex align-center gap-8px`}>
-                          <MessageCircleMore size={16} />Share on DeliChat
-                        </div>
-                      </div>
-                    )}
+                    <div className="d-flex align-center gap-8px">
+                      <Share2 size={18} />
+                      <span className="fs-14">187 Share</span>
+                    </div>
                   </div>
+                  {showShareMenu === post.id && (
+                    <div className="share-menu">
+                      <div className="dropdown-item d-flex align-center gap-8px">
+                        <CornerUpLeft size={16} />
+                        Share on Activity
+                      </div>
+                      <div className="dropdown-item d-flex align-center gap-8px">
+                        <MessageCircleMore size={16} />
+                        Share on DeliChat
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Comment Section */}
-                {isExpanded === post.id && (
-                  <div className={styles.expandedSection}>
-                    <div className={styles.comment_editor}>
-                      <div>
-                        <img
-                          src={user?.profile.avatarUrl}
-                          alt="avatar"
-                          className={styles.comment_avatar}
-                        />
-                      </div>
-                      <div className={styles.comment}>
-                        <input type="text" className={styles.comment_input} />
-                        <div className={styles.buttons}>
-                          <button className={styles.postBtn}>Post</button>
-                          <button
-                            className={styles.cancelBtn}
-                            onClick={() => setIsExpanded(null)}
-                          >
-                            Cancel
-                          </button>
-                        </div>
+                {/* Bookmark */}
+                <button className="btn-icon cursor-pointer ml-auto">
+                  <Bookmark size={18} />
+                </button>
+              </div>
+
+              {/* Comment Section */}
+              {isExpanded === post.id && (
+                <div className="mt-16 pt-16 border-top-light">
+                  <div className="d-flex gap-12px">
+                    <img
+                      src={user?.profile?.avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=30&h=30&fit=crop&crop=face"}
+                      alt="avatar"
+                      className="w-30 h-30 radius-50 object-cover"
+                    />
+                    <div className="flex-1">
+                      <input 
+                        type="text" 
+                        placeholder="Write a comment..."
+                        className="input-rounded w-100 py-12 px-16 border-light-gray mb-8"
+                      />
+                      <div className="d-flex gap-12px fs-12">
+                        <button className="btn-gradient-purple text-white py-6 px-32 cursor-pointer">
+                          Post
+                        </button>
+                        <button
+                          className="btn-cancel text-purple cursor-pointer"
+                          onClick={() => setIsExpanded(null)}
+                        >
+                          Cancel
+                        </button>
                       </div>
                     </div>
                   </div>
-                )}
-              </div>
-            </li>
+                </div>
+              )}
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 };

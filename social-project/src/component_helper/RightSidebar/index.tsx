@@ -19,7 +19,7 @@ const RightSideBar: React.FC = () => {
   }));
 
   return (
-    <div className="w-280 h-100vh bg-white d-flex flex-column">
+    <div className="w-280 h-100vh bg-white d-flex flex-column sticky top-0">
       {/* Tab Navigation */}
       <div className="d-flex bg-purple-light p-4 mx-16 mt-12 mb-12 radius-8 gap-2px">
         <button

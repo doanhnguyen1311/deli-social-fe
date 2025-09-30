@@ -53,6 +53,7 @@ export interface GetMyInfoResponse {
 export interface Media {
     mediaId: string;
     type: string;
+    url: string;
 }
 
 export interface Post {
