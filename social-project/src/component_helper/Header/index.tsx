@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds' }) => {
   ];
 
   return (
-    <header className="bg-white h-64 py-8 px-16 radius-24 d-flex align-center justify-between sticky top-16px z-100">
+    <header className="bg-white box-shadow h-64 py-8 px-16 radius-24 d-flex align-center justify-between sticky top-16px z-100">
       <div className="w-100 max-w-1200 mx-auto d-flex align-center justify-between">
         {/* Logo Section */}
         <div className="d-flex align-center gap-12px">

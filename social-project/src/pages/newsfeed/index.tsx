@@ -4,7 +4,7 @@ import Activity from './Activity';
 
 const NewsFeed: React.FC = () => {
     return (
-        <div className="col-lg-8">
+        <div>
             <Editor />
             <Activity />
         </div>
