@@ -1,12 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Users, Tv, UserCheck, MonitorDot } from 'lucide-react';
 
 interface HeaderProps {
   activeTab?: 'feeds' | 'people' | 'watch' | 'groups';
+  scrollContainer?: React.RefObject<HTMLDivElement | null>; 
 }
 
-const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds' }) => {
+const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer }) => {
   const [currentTab, setCurrentTab] = useState(activeTab);
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const container = scrollContainer?.current ?? window; // fallback window
+    if (!container) return;
+
+    const handleScroll = () => {
+      const currentScrollY =
+        container instanceof Window ? window.scrollY : container.scrollTop;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [scrollContainer]);
 
   const navItems = [
     {
@@ -32,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds' }) => {
   ];
 
   return (
-    <header className="bg-white box-shadow h-64 py-8 px-16 radius-24 d-flex align-center justify-between sticky top-16px z-100">
+    <header className={`bg-white box-shadow h-64 py-8 px-16 radius-24 d-flex align-center justify-between sticky top-0 z-100 slide-toggle ${showHeader ? 'show' : 'hide'}`}>
       <div className="w-100 max-w-1200 mx-auto d-flex align-center justify-between">
         {/* Logo Section */}
         <div className="d-flex align-center gap-12px">

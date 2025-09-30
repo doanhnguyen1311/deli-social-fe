@@ -73,16 +73,27 @@ const mockPosts: Post[] = [
 ];
 
 const Activity: React.FC = () => {
+  
   const { user } = useAuth();
+
   const [posts, setPosts] = useState<Post[]>(mockPosts);
+
   const [loading, setLoading] = useState(false);
+
   const [showMenu, setShowMenu] = useState<number | null>(null);
+
   const [isExpanded, setIsExpanded] = useState<number | null>(null);
+
   const [selectedReaction, setSelectedReaction] = useState<{ [key: number]: string | null }>({});
+
   const [showReactions, setShowReactions] = useState<number | null>(null);
+
   const [showShareMenu, setShowShareMenu] = useState<number | null>(null);
+
   const menuRef = useRef<HTMLDivElement>(null);
+
   const shareMenuRef = useRef<HTMLDivElement>(null);
+
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -136,7 +147,7 @@ const Activity: React.FC = () => {
                 <div className="d-flex align-center gap-12px">
                   <img 
                     src={user?.profile?.avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face"} 
-                    alt="avatar" 
+                    alt="avatar"
                     className="w-40 h-40 radius-50 object-cover"
                   />
                   <div className='d-flex flex-column gap-8px'>
