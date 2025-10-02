@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ['socials.delichat.online', 'com.delichat.online',],
+    allowedHosts: ['socials.delichat.online', 'com.delichat.online', 'ui.delichat.online'],
     host: true,
   },
 })
