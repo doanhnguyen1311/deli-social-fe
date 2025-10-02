@@ -29,8 +29,6 @@ jobs:
             
             echo "Cập nhật code nhánh developer"
             git pull origin developer
-            
-            disown
 
             echo "✅ Deploy backend account-service hoàn tất!"
 
