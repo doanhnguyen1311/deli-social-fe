@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
         <div className="d-flex align-center gap-12px">
           <div className="d-flex align-center justify-center">
             <div className="w-40 h-40 bg-gradient-purple text-white d-flex align-center justify-center radius-10 fs-20 font-bold">
-              V
+              Vaaaaaaaaaaaaaa
             </div>
           </div>
           <div className="d-flex flex-column gap-2px">
