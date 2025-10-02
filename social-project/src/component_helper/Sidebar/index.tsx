@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Globe, ExternalLink, MoreHorizontal } from 'lucide-react';
 import avatar from '../../assets/imgs/tindepchai.jpg';
+import { useAuth } from '../../hooks/useAuth';
 
 interface StoryHighlight {
   id: string;
@@ -25,8 +26,9 @@ interface SidebarProps {
   };
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ user }) => {
+const Sidebar: React.FC<SidebarProps> = () => {
   const [showFullBio, setShowFullBio] = useState(false);
+  const { user } = useAuth();
 
   const defaultUser = {
     name: "X_AE.C-921",
@@ -43,8 +45,6 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     website: "www.slothui.com"
   };
 
-  const userData = user || defaultUser;
-
   const storyHighlights: StoryHighlight[] = [
     { id: '1', image: 'https://images.unsplash.com/photo-1549144511-f099e773c147?w=60&h=60&fit=crop', label: 'France' },
     { id: '2', image: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=60&h=60&fit=crop', label: 'Korea' },
@@ -57,26 +57,26 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
       <div className="bg-white radius-16 p-24 text-center">
         <div className="mb-24">
           <div className="relative d-inline-block mb-16">
-            <img src={userData.avatar} alt={userData.name} className="avatar-lg radius-50 object-cover box-shadow" />
-            {userData.isOnline && <div className="status-badge"></div>}
+            <img src={user?.profile.avatarUrl} alt={user?.profile.fullName} className="avatar-lg radius-50 object-cover box-shadow" />
+            {user?.online && <div className="status-badge"></div>}
           </div>
-          <h2 className="fs-20 fw-semibold text-color mb-8">{userData.name}</h2>
-          <p className="fs-14 text-gray mb-8">{userData.username}</p>
-          <p className="fs-13 text-gray">{userData.location}</p>
+          <h2 className="fs-20 fw-semibold text-color mb-8">{user?.profile.fullName}</h2>
+          <p className="fs-14 text-gray mb-8">@{user?.username}</p>
+          <p className="fs-13 text-gray">{user?.profile.location} 🇻🇳</p>
         </div>
 
         {/* Stats */}
         <div className="d-flex justify-between pt-24 border-top-gray">
           <div className="d-flex flex-column align-center gap-4px">
-            <span className="fs-20 fw-semibold text-color">{userData.posts}</span>
+            <span className="fs-20 fw-semibold text-color">{defaultUser.posts}</span>
             <span className="fs-12 text-gray">POSTS</span>
           </div>
           <div className="d-flex flex-column align-center gap-4px">
-            <span className="fs-20 fw-semibold text-color">{userData.followers}</span>
-            <span className="fs-12 text-gray">FOLLOWERS</span>
+            <span className="fs-20 fw-semibold text-color">{defaultUser.followers}</span>
+            <span className="fs-12 text-gray">FRIENDS</span>
           </div>
           <div className="d-flex flex-column align-center gap-4px">
-            <span className="fs-20 fw-semibold text-color">{userData.following}</span>
+            <span className="fs-20 fw-semibold text-color">{defaultUser.following}</span>
             <span className="fs-12 text-gray">FOLLOWING</span>
           </div>
         </div>
@@ -92,7 +92,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
         </div>
         <div className="text-left">
           <p className="fs-14 text-color-secondary lh-16 mb-12 text-left">
-            {showFullBio ? userData.bio : `${userData.bio.substring(0, 120)}...`}
+            {showFullBio ? user?.profile.bio : `${user?.profile.bio.substring(0, 120)}...`}
           </p>
           <button 
             className="btn-link text-primary fw-medium fs-14 cursor-pointer"
@@ -128,7 +128,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             </div>
             <div className="flex-1">
               <span className="fs-12 text-gray fw-medium d-block">Phone Number</span>
-              <span className="fs-14 text-color d-block mt-8">{userData.phone}</span>
+              <span className="fs-14 text-color d-block mt-8">{user?.phoneNumber}</span>
             </div>
             <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
@@ -141,7 +141,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             </div>
             <div className="flex-1">
               <span className="fs-12 text-gray fw-medium d-block">Email Address</span>
-              <span className="fs-14 text-color d-block mt-8">{userData.email}</span>
+              <span className="fs-14 text-color d-block mt-8">{user?.email}</span>
             </div>
             <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
@@ -154,7 +154,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             </div>
             <div className="flex-1">
               <span className="fs-12 text-gray fw-medium d-block">Website</span>
-              <span className="fs-14 text-color d-block mt-8">{userData.website}</span>
+              <span className="fs-14 text-color d-block mt-8">{user?.profile.website}</span>
             </div>
             <button className="btn-icon cursor-pointer">
               <ExternalLink size={16} />
