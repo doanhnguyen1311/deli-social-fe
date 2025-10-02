@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Users, Tv, UserCheck, MonitorDot } from 'lucide-react';
+import { Users, Tv, UserCheck, MonitorDot, Settings, LogOut } from 'lucide-react';
+import { LogoutAPI } from '../../api';
+import logo from '../../assets/imgs/logo.png'
+import axios from 'axios';
 
 interface HeaderProps {
   activeTab?: 'feeds' | 'people' | 'watch' | 'groups';
@@ -32,6 +35,22 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
     return () => container.removeEventListener('scroll', handleScroll);
   }, [scrollContainer]);
 
+  const handleLogout = async () => {
+    try {
+      await axios.post(LogoutAPI, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        withCredentials: true, // nếu server quản lý session cookie
+      });
+  
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   const navItems = [
     {
       key: 'feeds',
@@ -61,8 +80,8 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
         {/* Logo Section */}
         <div className="d-flex align-center gap-12px">
           <div className="d-flex align-center justify-center">
-            <div className="w-40 h-40 bg-gradient-purple text-white d-flex align-center justify-center radius-10 fs-20 font-bold">
-              V
+            <div className="text-white d-flex align-center justify-center radius-10">
+              <img src={logo} alt='logo' className='w-40 h-40' />
             </div>
           </div>
           <div className="d-flex flex-column gap-2px">
@@ -72,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 d-flex justify-end max-w-500">
+        <nav className="flex-1 d-flex justify-center max-w-500">
           <ul className="d-flex gap-8px list-none">
             {navItems.map((item) => (
               <li key={item.key} className="d-flex">
@@ -89,6 +108,22 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
             ))}
           </ul>
         </nav>
+
+        {/* Setting + Logout */}
+        <div className="d-flex align-center gap-8px">
+          <button className="d-flex flex-column align-center gap-6px py-6 px-12 text-gray fs-14 fw-medium cursor-pointer radius-16 hover-bg">
+            <Settings size={18} />
+            <span>Setting</span>
+          </button>
+          <button
+            className="d-flex flex-column align-center gap-6px py-6 px-12 text-gray fs-14 fw-medium cursor-pointer radius-16 hover-bg"
+            onClick={handleLogout}
+          >
+            <LogOut size={18} />
+            <span>Logout</span>
+          </button>
+        </div>
+
       </div>
     </header>
   );

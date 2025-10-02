@@ -12,6 +12,8 @@ import care from '../../../assets/imgs/care.jpg';
 import wow from '../../../assets/imgs/wow.jpg';
 import sad from '../../../assets/imgs/sad.jpg';
 import angry from '../../../assets/imgs/angry.jpg';
+import axios from 'axios';
+import { BaseURL } from '../../../api';
 
 const reactions = [
   { name: "like",  icon: like,  color: "text-blue-500" },
@@ -97,13 +99,39 @@ const Activity: React.FC = () => {
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Uncomment để sử dụng API thật
     if (!user?.id) return;
+    
+    setLoading(true);
     getAllPostByUserId(user.id)
-      .then(data => setPosts(data.content))
+      .then(async (data) => {
+        const postsWithUrls = await Promise.all(
+          data.content.map(async (post: Post) => {
+            if (post.mediaList?.length) {
+              const mediaListWithUrl = await Promise.all(
+                post.mediaList.map(async (m: any) => {
+                  try {
+                    const viewRes = await axios.get(`${BaseURL}/media/presign-view`, {
+                      params: { mediaId: m.mediaId },
+                      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+                    });
+                    return { ...m, url: viewRes.data.data.viewUrl };
+                  } catch (err) {
+                    console.error("Error fetching media url:", err);
+                    return m;
+                  }
+                })
+              );
+              return { ...post, mediaList: mediaListWithUrl };
+            }
+            return post;
+          })
+        );
+        setPosts(postsWithUrls);
+      })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }, [user?.id]);
+  
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -190,11 +218,24 @@ const Activity: React.FC = () => {
                   <div className="post-media-container">
                     {post.mediaList.map(media => (
                       <div key={media.mediaId} className="post-media-item">
-                        <img 
-                          src={media.url || `https://com.delichat.online/media/${media.mediaId}`} 
-                          alt="Media"
-                          className="w-100 h-100 object-cover cursor-pointer"
-                        />
+                        {media.type === "IMAGE" && (
+                          <img src={media.url} alt="Media" className="w-100 h-100 object-cover" />
+                        )}
+                        {media.type === "VIDEO" && (
+                          <video controls className="w-100 h-auto radius-12">
+                            <source src={media.url} type="video/mp4" />
+                          </video>
+                        )}
+                        {media.type === "AUDIO" && (
+                          <audio controls className="w-100 mt-8">
+                            <source src={media.url} type="audio/mpeg" />
+                          </audio>
+                        )}
+                        {media.type === "FILE" && (
+                          <a href={media.url} target="_blank" rel="noopener noreferrer" className="file-link text-blue-500 underline">
+                            📎 Download File
+                          </a>
+                        )}
                       </div>
                     ))}
                   </div>

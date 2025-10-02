@@ -49,7 +49,6 @@ export interface GetMyInfoResponse {
     success: boolean;
 }
 
-// types.ts
 export interface Media {
     mediaId: string;
     type: string;
