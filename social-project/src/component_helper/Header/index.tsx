@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Users, Tv, UserCheck, MonitorDot } from 'lucide-react';
+import logo from '../../assets/imgs/logo.png'
 
 interface HeaderProps {
   activeTab?: 'feeds' | 'people' | 'watch' | 'groups';
@@ -61,8 +62,8 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
         {/* Logo Section */}
         <div className="d-flex align-center gap-12px">
           <div className="d-flex align-center justify-center">
-            <div className="w-40 h-40 bg-gradient-purple text-white d-flex align-center justify-center radius-10 fs-20 font-bold">
-              V
+            <div className="text-white d-flex align-center justify-center radius-10">
+              <img src={logo} alt='logo' className='w-40 h-40' />
             </div>
           </div>
           <div className="d-flex flex-column gap-2px">
