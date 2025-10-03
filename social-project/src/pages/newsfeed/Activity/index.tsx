@@ -178,13 +178,13 @@ const Activity: React.FC = () => {
               <div className="d-flex justify-between align-center mb-16">
                 <div className="d-flex align-center gap-12px">
                   <img 
-                    src={user?.profile?.avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop&crop=face"} 
+                    src={user?.profile?.avatarUrl || avatarDefault} 
                     alt="avatar"
                     className="w-40 h-40 radius-50 object-cover"
                   />
                   <div className='d-flex flex-column gap-8px'>
                     <div className="fs-14 fw-semibold text-color">
-                      {user?.username || "David Thompson"}
+                      {user?.profile?.fullName || "Người dùng DeliSocial"}
                     </div>
                     <div className="fs-12 text-gray">
                       {new Date(post.createdAt).toLocaleDateString('en-US', {

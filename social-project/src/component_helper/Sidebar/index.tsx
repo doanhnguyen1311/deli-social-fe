@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, Globe, ExternalLink, MoreHorizontal } from 'lucide-react';
 import avatar from '../../assets/imgs/tindepchai.jpg';
 import { useAuth } from '../../hooks/useAuth';
+import { avatarDefault } from '../default-avt';
 
 interface StoryHighlight {
   id: string;
@@ -57,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
       <div className="bg-white radius-16 p-24 text-center">
         <div className="mb-24">
           <div className="relative d-inline-block mb-16">
-            <img src={user?.profile.avatarUrl} alt={user?.profile.fullName} className="avatar-lg radius-50 object-cover box-shadow" />
+            <img src={user?.profile.avatarUrl || avatarDefault} alt={user?.profile.fullName} className="avatar-lg radius-50 object-cover box-shadow" />
             {user?.online && <div className="status-badge"></div>}
           </div>
           <h2 className="fs-20 fw-semibold text-color mb-8">{user?.profile.fullName}</h2>
