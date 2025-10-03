@@ -16,6 +16,7 @@ import Settings from "../pages/settings";
 import NotificationPanel from "../pages/notificationPanel";
 import { GroupLayout } from "../layouts/GroupLayout";
 import GroupDetail from "../pages/groupDetail";
+import UserProfile from "../pages/userProfile";
 
 const AppRoutes: FC = () => {
     return (
@@ -30,6 +31,7 @@ const AppRoutes: FC = () => {
                         <Route path="watch" element={<Watch />} />
                         <Route path="people" element={<People />} />
                         <Route path="groups" element={<GroupPage />} />
+                        <Route path="/profile/:userName" element={<UserProfile />} />
                     </Route>
                     <Route element={<AuthLayout />}>
                         <Route path="my-profile" element={<MyProfile />} />

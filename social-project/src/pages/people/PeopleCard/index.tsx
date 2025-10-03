@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../index.module.css';
 
 export interface User {
   id: number;
@@ -14,47 +13,46 @@ export interface User {
 
 export interface PeopleCardProps {
   user: User;
-  onAction: (userId: number, actionType: string) => void;
+  onAction: (userName: string, actionType: string) => void;
 }
 
 const PeopleCard: React.FC<PeopleCardProps> = ({ user, onAction }) => {
   return (
-    <div className={styles.peopleCard}>
+    <div 
+      className='bg-white radius-24 p-16 text-center box-shadow'
+      onClick={() => onAction(user.name, 'profile')}
+    >
       {/* Avatar */}
-      <div className={styles.avatarContainer}>
+      <div className='mb-16'>
         <img 
           src={user.avatar} 
           alt={user.name}
-          className={styles.avatar}
+          className='w-80 radius-50 object-cover'
         />
       </div>
       
       {/* Name */}
-      <h3 className={styles.userName}>{user.name}</h3>
+      <h3 className='fs-18 font-medium mb-12'>{user.name}</h3>
       
       {/* Active Status */}
-      <p className={styles.activeStatus}>{user.activeStatus}</p>
+      <p className='fs-12 text-gray mb-12'>{user.activeStatus}</p>
       
       {/* Stats */}
-      <div className={styles.statsContainer}>
-        <div className={styles.statItem}>
-          <div className={styles.statNumber}>{user.friends}</div>
-          <div className={styles.statLabel}>Friends</div>
+      <div className='d-flex justify-center gap-32px mb-20'>
+        <div className='text-center'>
+          <div className='fs-16 fw-semibold lh-16'>{user.friends}</div>
+          <div className='fs-12 text-gray mt-8'>Friends</div>
         </div>
-        <div className={styles.statItem}>
-          <div className={styles.statNumber}>{user.groups}</div>
-          <div className={styles.statLabel}>Groups</div>
+        <div className='text-center'>
+          <div className='fs-16 fw-semibold lh-16'>{user.groups}</div>
+          <div className='fs-12 text-gray mt-8'>Groups</div>
         </div>
       </div>
       
       {/* Action Button */}
       <button 
-        onClick={() => onAction(user.id, user.actionType)}
-        className={`${styles.actionButton} ${
-          user.actionType === 'profile' 
-            ? styles.profileButton 
-            : styles.cancelButton
-        }`}
+        onClick={() => onAction(user.name, user.actionType)}
+        className='w-100 btn-primary py-12'
       >
         {user.actionText}
       </button>

@@ -58,7 +58,7 @@ const SignInForm: React.FC = () => {
                 />
                 <a href="#">Forget Your Password?</a>
                 {/* <Link to={'feeds'}><button type="submit">Sign In</button></Link> */}
-                <button type="submit">Sign In ABC</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
     );

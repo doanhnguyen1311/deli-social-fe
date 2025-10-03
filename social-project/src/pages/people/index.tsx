@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { Search } from 'lucide-react';
+import React from 'react';
 import type { User } from './PeopleCard';
 import PeopleCard from './PeopleCard';
-import styles from './index.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const People: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
     
     const sampleUsers: User[] = [
         {
@@ -16,7 +15,7 @@ const People: React.FC = () => {
             friends: 0,
             groups: 3,
             actionType: 'profile',
-            actionText: 'My Profile'
+            actionText: 'Add Friend'
         },
         {
             id: 2,
@@ -36,7 +35,7 @@ const People: React.FC = () => {
             friends: 6,
             groups: 5,
             actionType: 'cancel',
-            actionText: 'Cancel Friendship Request'
+            actionText: 'Add Friend'
         },
         {
             id: 4,
@@ -46,56 +45,42 @@ const People: React.FC = () => {
             friends: 10,
             groups: 3,
             actionType: 'cancel',
+            actionText: 'Add friend'
+        },
+        {
+            id: 5,
+            name: 'Irina Petrova',
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
+            activeStatus: 'Active 1 year, 5 months ago',
+            friends: 10,
+            groups: 3,
+            actionType: 'cancel',
+            actionText: 'Add friend'
+        },
+        {
+            id: 6,
+            name: 'Irina Petrova',
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
+            activeStatus: 'Active 1 year, 5 months ago',
+            friends: 10,
+            groups: 3,
+            actionType: 'cancel',
             actionText: 'Cancel Friendship Request'
         }
     ];
-    
-    const filteredUsers: User[] = sampleUsers.filter(user =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
       
-    const handleAction = (userId: number, actionType: string): void => {
-        console.log(`Action ${actionType} for user ${userId}`);
+    const handleAction = (userName: string, actionType: string): void => {
+        console.log(`Action ${actionType} for user ${userName}`);
+        if (actionType === 'profile') {
+            navigate(`/profile/${userName}`);
+        }
     };
 
     return (
-        <div className='col-lg-8 p-36'>
-            {/* Header */}
-            <div className={styles.header}>
-                <div className={styles.headerTop}>
-                    <h1 className={styles.title}>
-                        Active Members
-                    </h1>
-                </div>
-                
-                <div className={styles.headerBottom}>
-                    {/* Search Bar */}
-                    <div className={styles.searchContainer}>
-                        <input
-                            type="text"
-                            placeholder="Search Members..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className={styles.searchInput}
-                        />
-                        <button className={styles.searchButton}>
-                            <Search className={styles.searchIcon} />
-                        </button>
-                    </div>
-                    {/* Select filter */}
-                    <div>
-                        <select className={styles.selectFilter}>
-                            <option value="">Last Active</option>
-                            <option value="">Newest Registered</option>
-                            <option value="">Alphabetical</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
+        <div className=''>
             {/* PeopleCard */}
-            <div className={styles.peopleGrid}>
-                {filteredUsers.map((user) => (
+            <div className='d-grid grid-cols-250-auto gap-16px'>
+                {sampleUsers.map((user) => (
                     <PeopleCard 
                         key={user.id} 
                         user={user} 

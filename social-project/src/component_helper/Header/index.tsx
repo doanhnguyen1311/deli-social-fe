@@ -3,6 +3,7 @@ import { Users, Tv, UserCheck, MonitorDot, Settings, LogOut } from 'lucide-react
 import { LogoutAPI } from '../../api';
 import logo from '../../assets/imgs/logo.png'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   activeTab?: 'feeds' | 'people' | 'watch' | 'groups';
@@ -10,12 +11,18 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer }) => {
+  const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState(activeTab);
   const [showHeader, setShowHeader] = useState(true);
   const lastScrollY = useRef(0);
 
+  const handleNavClick = (key: string) => {
+    setCurrentTab(key as typeof currentTab);
+    navigate(`/${key}`);
+  };
+
   useEffect(() => {
-    const container = scrollContainer?.current ?? window; // fallback window
+    const container = scrollContainer?.current ?? window;
     if (!container) return;
 
     const handleScroll = () => {
@@ -99,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
                   className={`nav-button d-flex flex-column align-center gap-6px py-8 px-16 text-gray fs-14 fw-medium cursor-pointer radius-16 ${
                     currentTab === item.key ? 'nav-button-active' : ''
                   }`}
-                  onClick={() => setCurrentTab(item.key as typeof currentTab)}
+                  onClick={() => handleNavClick(item.key)}
                 >
                   {item.icon && <span className="d-flex align-center justify-center">{item.icon}</span>}
                   <span className="fs-14 nav-label">{item.label}</span>
@@ -111,7 +118,10 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
 
         {/* Setting + Logout */}
         <div className="d-flex align-center gap-8px">
-          <button className="d-flex flex-column align-center gap-6px py-6 px-12 text-gray fs-14 fw-medium cursor-pointer radius-16 hover-bg">
+          <button 
+            className="d-flex flex-column align-center gap-6px py-6 px-12 text-gray fs-14 fw-medium cursor-pointer radius-16 hover-bg"
+            onClick={() => navigate('/settings')}
+          >
             <Settings size={18} />
             <span>Setting</span>
           </button>

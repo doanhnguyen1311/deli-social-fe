@@ -14,6 +14,7 @@ import sad from '../../../assets/imgs/sad.jpg';
 import angry from '../../../assets/imgs/angry.jpg';
 import axios from 'axios';
 import { BaseURL } from '../../../api';
+import Loading from '../../../component_helper/Loading';
 
 const reactions = [
   { name: "like",  icon: like,  color: "text-blue-500" },
@@ -160,7 +161,7 @@ const Activity: React.FC = () => {
     return r ? r.charAt(0).toUpperCase() + r.slice(1) : "Like";
   };
 
-  if (loading) return <p>Đang tải bài viết...</p>;
+  if (loading) return <Loading />;
 
   return (
     <div className="pt-16">
@@ -168,6 +169,9 @@ const Activity: React.FC = () => {
         {posts.map(post => {
           const currentReaction = reactions.find(r => r.name === selectedReaction[post.id]);
           const reactionColor = currentReaction?.color ?? "text-gray-800";
+          const mediaCount = post.mediaList.length;
+          const containerClass = mediaCount === 1 ? 'post-media-container single-image' : 'post-media-container';
+          
           return (
             <div key={post.id} className="bg-white radius-24 p-16 box-shadow">
               {/* Header */}
@@ -215,9 +219,9 @@ const Activity: React.FC = () => {
                   {post.content}
                 </p>
                 {post.mediaList && post.mediaList.length > 0 && (
-                  <div className="post-media-container">
+                  <div className={containerClass}>
                     {post.mediaList.map(media => (
-                      <div key={media.mediaId} className="post-media-item">
+                      <div key={media.mediaId} className="post-media-item radius-12 w-100">
                         {media.type === "IMAGE" && (
                           <img src={media.url} alt="Media" className="w-100 h-100 object-cover" />
                         )}
