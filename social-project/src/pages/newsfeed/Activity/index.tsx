@@ -15,6 +15,7 @@ import angry from '../../../assets/imgs/angry.jpg';
 import axios from 'axios';
 import { BaseURL } from '../../../api';
 import Loading from '../../../component_helper/Loading';
+import { avatarDefault } from '../../../component_helper/default-avt';
 
 const reactions = [
   { name: "like",  icon: like,  color: "text-blue-500" },
