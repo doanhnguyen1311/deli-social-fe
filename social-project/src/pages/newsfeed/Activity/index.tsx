@@ -14,6 +14,7 @@ import sad from '../../../assets/imgs/sad.jpg';
 import angry from '../../../assets/imgs/angry.jpg';
 import axios from 'axios';
 import { BaseURL } from '../../../api';
+import { avatarDefault } from '../../../component_helper/default-avt';
 
 const reactions = [
   { name: "like",  icon: like,  color: "text-blue-500" },
@@ -174,7 +175,7 @@ const Activity: React.FC = () => {
               <div className="d-flex justify-between align-center mb-16">
                 <div className="d-flex align-center gap-12px">
                   <img 
-                    src={user?.profile?.avatarUrl || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrHT9KQ3vag-Gdd9sjA7pi6zl2f_ho4Gh7Vg&s"} 
+                    src={user?.profile?.avatarUrl || avatarDefault} 
                     alt="avatar"
                     className="w-40 h-40 radius-50 object-cover"
                   />

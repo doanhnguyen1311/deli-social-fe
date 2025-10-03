@@ -3,6 +3,7 @@ import { Paperclip, SquarePen, X } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 import { BaseURL } from '../../../api';
 import axios from "axios";
+import { avatarDefault } from '../../../component_helper/default-avt';
 
 interface FileType {
     name: string;
@@ -117,7 +118,7 @@ const Editor: React.FC = () => {
             <form onSubmit={handleSubmit}>
                 <div className="d-flex align-center gap-16px">
                     <img
-                        src={user?.profile.avatarUrl}
+                        src={user?.profile.avatarUrl || avatarDefault}
                         alt="avatar"
                         className="w-40 h-40 radius-50 object-cover"
                     />
