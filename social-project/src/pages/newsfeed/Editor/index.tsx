@@ -124,7 +124,7 @@ const Editor: React.FC = () => {
                     />
                     <input
                         type="text"
-                        placeholder="What's new, Joseph?"
+                        placeholder={"Có gì mới không, " + (user?.profile.fullName)?.split(" ").at(-1) +"?"}
                         className="input-rounded w-100 p-12 border-light-gray"
                         value={content}
                         onFocus={() => setIsExpanded(true)}
