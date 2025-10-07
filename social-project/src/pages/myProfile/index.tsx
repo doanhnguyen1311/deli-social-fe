@@ -9,7 +9,7 @@ const MyProfile: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"view" | "edit" | "photo" | "cover">("view");
 
     return (
-        <div className={`col-lg-6 border-x-primary ${styles.container}`}>
+        <div className={`bg-white radius-24 p-16`}>
             <div className={styles.tabs}>
                 <div
                     className={`${styles.tab} ${activeTab === "view" ? styles.active : ""}`}

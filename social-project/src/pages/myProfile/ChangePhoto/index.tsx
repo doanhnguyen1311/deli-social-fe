@@ -7,10 +7,10 @@ const ChangePhoto: React.FC = () => {
     return (
         <div className={styles.changePhoto}>
             {/* Title */}
-            <h2 className={styles.title}>Change Profile Photo</h2>
+            <h2 className='fs-24 mb-12 text-color'>Change Profile Photo</h2>
 
             {/* Info Box */}
-            <div className={styles.infoBox}>
+            <div className='d-flex gap-8px bg-white p-24'>
                 <MessageCircleWarning size={40} className={styles.icon} />
                 <p>
                     Your profile photo will be used on your profile and throughout the site. If there is a{" "}

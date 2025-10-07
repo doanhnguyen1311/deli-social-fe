@@ -93,12 +93,20 @@ select {
 	background-color: var(--primary-color) !important;
 }
 
+.bg-default {
+	background-color: var(--default-color) !important;
+}
+
 .bg-white {
 	background-color: #fff;
 }
 
 .bg-gray {
-	background-color: #f8f8f8;
+	background-color: #f8f9fb;
+}
+
+.bg-gray-500 {
+	background-color: #f7f7f7;
 }
 
 .bg-chat {
@@ -152,6 +160,10 @@ select {
 
 .mt-4 {
 	margin-top: 4px;
+}
+
+.mt-6 {
+	margin-top: 6px;
 }
 
 .mt-8 {
@@ -324,6 +336,10 @@ select {
 	padding-left: 16px;
 }
 
+.pl-25per {
+	padding-left: 25%;
+}
+
 /* Radius */
 .radius-4 {
 	border-radius: 4px;
@@ -476,6 +492,10 @@ select {
 
 .gap-8px {
 	gap: 8px !important;
+}
+
+.gap-10px {
+	gap: 10px !important;
 }
 
 .gap-12px {
@@ -651,8 +671,16 @@ select {
 	width: 476px;
 }
 
+.w-32per {
+	width: 32%;
+}
+
 .w-50per {
 	width: 50%;
+}
+
+.w-90per {
+	width: 90%;
 }
 
 .w-100 {
@@ -709,6 +737,10 @@ select {
 	text-align: left;
 }
 
+.text-right {
+	text-align: right;
+}
+
 .text-justify {
 	text-align: justify;
 }
@@ -717,12 +749,16 @@ select {
 	color: var(--default-color);
 }
 
+.text-hover-underline:hover {
+	text-decoration: underline;
+}
+
 .fw-normal {
 	font-weight: 400 !important;
 }
 
 .font-bold {
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .fw-medium, .fw-semibold {
@@ -850,14 +886,6 @@ select {
 	background: #f9fafb;
 }
 
-.border-primary {
-	border: 2px solid var(--default-color) !important;
-}
-
-.hover-border-primary:hover {
-	border-color: #6366f1 !important;
-}
-
 .hover-bg-gray:hover {
 	background-color: #f9fafb !important;
 }
@@ -867,7 +895,19 @@ select {
 	line-height: 1.6;
 }
 
+.lh-26 {
+	line-height: 2.6;
+}
+
 /* Border */
+.border-primary {
+	border: 2px solid var(--default-color) !important;
+}
+
+.hover-border-primary:hover {
+	border-color: #6366f1 !important;
+}
+
 .border-right-gray {
 	border-right: 1px solid rgb(233, 231, 235);
 }
@@ -1319,6 +1359,15 @@ th {
 	border-radius: 999px;
 }
 
+.select {
+	padding: 10px 16px;
+	border-radius: 999px;
+	border: none;
+	background-color: #f7f7f7;
+	font-size: 14px;
+	color: #495057;
+}
+
 /* Navigation Button - có thể tái sử dụng */
 .nav-button {
 	border: none;
@@ -1489,6 +1538,13 @@ th {
 .slide-toggle.bottom-hide {
 	transform: translateY(100%);
 	opacity: 0;
+}
+
+// Divider
+.divider {
+	border: none;
+	border-top: 1px solid #a0a0a0;
+	margin-bottom: 20px;
 }
 
 /* loading.css */

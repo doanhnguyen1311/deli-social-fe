@@ -32,8 +32,7 @@ const AppRoutes: FC = () => {
                         <Route path="people" element={<People />} />
                         <Route path="groups" element={<GroupPage />} />
                         <Route path="/profile/:userName" element={<UserProfile />} />
-                    </Route>
-                    <Route element={<AuthLayout />}>
+                        
                         <Route path="my-profile" element={<MyProfile />} />
                         <Route path="my-activity" element={<MyActivity />} />
                         <Route path="my-friends" element={<MyFriends />} />

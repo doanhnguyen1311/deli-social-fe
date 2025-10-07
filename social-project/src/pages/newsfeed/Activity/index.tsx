@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { EllipsisVertical, ThumbsUp, CornerUpLeft, MessageCircleMore, MessageSquare, Share2, Bookmark } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
-import { getAllPostByUserId } from '../../../api/authAPI';
-import type { Post } from '../../../api/authAPI';
+import { getNewFeeds } from '../../../api/authAPI';
+import type { FeedItem } from '../../../api/authAPI';
 
 // Reactions
 import like from '../../../assets/imgs/like.jpg';
@@ -13,7 +13,7 @@ import wow from '../../../assets/imgs/wow.jpg';
 import sad from '../../../assets/imgs/sad.jpg';
 import angry from '../../../assets/imgs/angry.jpg';
 import axios from 'axios';
-import { BaseURL } from '../../../api';
+import { BaseURL, GetUserByIdAPI } from '../../../api';
 import Loading from '../../../component_helper/Loading';
 import { avatarDefault } from '../../../component_helper/default-avt';
 
@@ -28,7 +28,7 @@ const reactions = [
 ];
 
 // Mock data
-const mockPosts: Post[] = [
+const mockPosts: FeedItem[] = [
   {
     id: 1,
     userId: "user-123",
@@ -44,7 +44,8 @@ const mockPosts: Post[] = [
     commentCount: 25,
     visibility: "PUBLIC",
     createdAt: new Date(Date.now() - 2 * 60000).toISOString(),
-    updatedAt: new Date(Date.now() - 2 * 60000).toISOString()
+    updatedAt: new Date(Date.now() - 2 * 60000).toISOString(),
+    userProfile: null,
   },
   {
     id: 2,
@@ -55,7 +56,8 @@ const mockPosts: Post[] = [
     commentCount: 12,
     visibility: "PUBLIC",
     createdAt: new Date(Date.now() - 3600000).toISOString(),
-    updatedAt: new Date(Date.now() - 3600000).toISOString()
+    updatedAt: new Date(Date.now() - 3600000).toISOString(),
+    userProfile: null,
   },
   {
     id: 3,
@@ -72,7 +74,8 @@ const mockPosts: Post[] = [
     commentCount: 34,
     visibility: "PUBLIC",
     createdAt: new Date(Date.now() - 7200000).toISOString(),
-    updatedAt: new Date(Date.now() - 7200000).toISOString()
+    updatedAt: new Date(Date.now() - 7200000).toISOString(),
+    userProfile: null,
   }
 ];
 
@@ -80,7 +83,7 @@ const Activity: React.FC = () => {
   
   const { user } = useAuth();
 
-  const [posts, setPosts] = useState<Post[]>(mockPosts);
+  const [posts, setPosts] = useState<FeedItem[]>(mockPosts);
 
   const [loading, setLoading] = useState(false);
 
@@ -104,12 +107,15 @@ const Activity: React.FC = () => {
     if (!user?.id) return;
     
     setLoading(true);
-    getAllPostByUserId(user.id)
+    getNewFeeds()
       .then(async (data) => {
         const postsWithUrls = await Promise.all(
-          data.content.map(async (post: Post) => {
+          data.data.map(async (post: FeedItem) => {
+            let mediaListWithUrl: any[] = [];
+
+            // Fetch media
             if (post.mediaList?.length) {
-              const mediaListWithUrl = await Promise.all(
+              mediaListWithUrl = await Promise.all(
                 post.mediaList.map(async (m: any) => {
                   try {
                     const viewRes = await axios.get(`${BaseURL}/media/presign-view`, {
@@ -117,17 +123,29 @@ const Activity: React.FC = () => {
                       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                     });
                     return { ...m, url: viewRes.data.data.viewUrl };
-                  } catch (err) {
-                    console.error("Error fetching media url:", err);
+                  } catch {
                     return m;
                   }
                 })
               );
-              return { ...post, mediaList: mediaListWithUrl };
             }
-            return post;
+
+            // Fetch user info
+            let userProfile = null;
+            try {
+              const userRes = await axios.get(`${GetUserByIdAPI}/${post.userId}`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+              });
+              userProfile = userRes.data?.data || null;
+            } catch (err) {
+              console.error("Error fetching user info:", err);
+            }
+
+            // ✅ return sau khi xử lý tất cả
+            return { ...post, mediaList: mediaListWithUrl, userProfile };
           })
         );
+
         setPosts(postsWithUrls);
       })
       .catch(err => console.error(err))
@@ -179,13 +197,13 @@ const Activity: React.FC = () => {
               <div className="d-flex justify-between align-center mb-16">
                 <div className="d-flex align-center gap-12px">
                   <img 
-                    src={user?.profile?.avatarUrl || avatarDefault} 
+                    src={post.userProfile?.profile.avatarUrl || avatarDefault} 
                     alt="avatar"
                     className="w-40 h-40 radius-50 object-cover"
                   />
                   <div className='d-flex flex-column gap-8px'>
                     <div className="fs-14 fw-semibold text-color">
-                      {user?.profile?.fullName || "Người dùng DeliSocial"}
+                      {post.userProfile?.profile.fullName || "Người dùng DeliSocial"}
                     </div>
                     <div className="fs-12 text-gray">
                       {new Date(post.createdAt).toLocaleDateString('en-US', {

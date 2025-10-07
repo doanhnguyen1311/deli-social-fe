@@ -3,6 +3,7 @@ import { Phone, Mail, Globe, ExternalLink, MoreHorizontal } from 'lucide-react';
 import avatar from '../../assets/imgs/tindepchai.jpg';
 import { useAuth } from '../../hooks/useAuth';
 import { avatarDefault } from '../default-avt';
+import { useNavigate } from 'react-router-dom';
 
 interface StoryHighlight {
   id: string;
@@ -28,6 +29,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = () => {
+  const navigate = useNavigate();
   const [showFullBio, setShowFullBio] = useState(false);
   const { user } = useAuth();
 
@@ -57,13 +59,16 @@ const Sidebar: React.FC<SidebarProps> = () => {
       {/* Profile Card */}
       <div className="bg-white radius-16 p-24 text-center">
         <div className="mb-24">
-          <div className="relative d-inline-block mb-16">
+          <div 
+            className="relative d-inline-block mb-16"
+            onClick={() => navigate('my-profile')}
+          >
             <img src={user?.profile.avatarUrl || avatarDefault} alt={user?.profile.fullName} className="avatar-lg radius-50 object-cover box-shadow" />
             {user?.online && <div className="status-badge"></div>}
           </div>
           <h2 className="fs-20 fw-semibold text-color mb-8">{user?.profile.fullName}</h2>
           <p className="fs-14 text-gray mb-8">@{user?.username}</p>
-          <p className="fs-13 text-gray">{user?.profile.location} 🇻🇳</p>
+          <p className="fs-13 text-gray">{user?.profile.location || user?.province.name} 🇻🇳</p>
         </div>
 
         {/* Stats */}

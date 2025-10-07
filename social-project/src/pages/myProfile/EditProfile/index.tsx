@@ -29,97 +29,107 @@ const EditProfile: React.FC = () => {
 
     return (
         <div>
-            <h2 className={styles.title}>Edit Profile</h2>
-            <h4 className={styles.section}>Editing "Base" Profile Group</h4>
-            <hr className={styles.divider} />
+            <h2 className='fs-24 mb-12 text-color'>Edit Profile</h2>
+            <h4 className='fs-16 text-color'>Editing "Base" Profile Group</h4>
+            <hr className='divider' />
 
-            <form className={styles.form}>
+            <form className='d-flex flex-column gap-20px'>
                 {/* Name */}
-                <div className={styles.formGroup}>
-                    <div className={styles.fieldSet}>
-                        <label className={styles.labelEdit}>Name <span className={styles.required}>(required)</span></label>
-                        <input type="text" className={styles.input} defaultValue={user?.profile.fullName} />
-                        <div className={styles.note}>This field may be seen by: <strong>Everyone</strong></div>
+                <div className='d-flex flex-column relative'>
+                    <div className='d-flex mb-16'>
+                        <label className='w-32per fs-16 font-bold mt-8 mt-8 pr-16 text-right'>Name <span className='fw-normal ml-4 fs-12 text-gray'>(required)</span></label>
+                        <div className='w-100'>
+                            <input type="text" className='w-90per h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24' defaultValue={user?.profile.fullName} />
+                            <div className='fs-13 mt-6 text-color'>This field may be seen by: <strong>Everyone</strong></div>
+                        </div>
                     </div>
                 </div>
 
                 {/* Date of Birth */}
-                <div className={styles.formGroup}>
-                    <div className={styles.fieldSet}>
-                        <label className={styles.labelEdit}>Date of Birth <span className={styles.required}>(required)</span></label>
-                        <div className={styles.dobGroup}>
-                            <select defaultValue={day || ""}>
-                                <option value="">Day</option>
-                                {days.map(d => (
-                                    <option key={d} value={d}>{d}</option>
-                                ))}
-                            </select>
-
-                            <select defaultValue={month || ""}>
-                                <option value="">Month</option>
-                                {months.map(m => (
-                                    <option key={m} value={m}>{m}</option>
-                                ))}
-                            </select>
-
-                            <select defaultValue={year || ""}>
-                                <option value="">Year</option>
-                                {years.map(y => (
-                                    <option key={y} value={y}>{y}</option>
-                                ))}
-                            </select>
+                <div className='d-flex flex-column relative'>
+                    <div className='d-flex mb-16'>
+                        <label className='w-32per fs-16 font-bold mt-8 pr-16 text-right'>Date of Birth <span className='fw-normal ml-4 fs-12 text-gray'>(required)</span></label>
+                        <div className='w-100'>
+                            <div className='d-flex gap-10px'>
+                                <select className='select' defaultValue={day || ""}>
+                                    <option value="">Day</option>
+                                    {days.map(d => (
+                                        <option key={d} value={d}>{d}</option>
+                                    ))}
+                                </select>
+    
+                                <select className='select' defaultValue={month || ""}>
+                                    <option value="">Month</option>
+                                    {months.map(m => (
+                                        <option key={m} value={m}>{m}</option>
+                                    ))}
+                                </select>
+    
+                                <select className='select' defaultValue={year || ""}>
+                                    <option value="">Year</option>
+                                    {years.map(y => (
+                                        <option key={y} value={y}>{y}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className='fs-13 mt-6 text-color'>This field may be seen by: <strong>Only Me</strong></div>
                         </div>
-                        <div className={styles.note}>This field may be seen by: <strong>Only Me</strong></div>
                     </div>
                 </div>
 
                 {/* Sex */}
-                <div className={styles.formGroup}>
-                    <div className={styles.fieldSet}>
-                        <label className={styles.labelEdit} style={{marginTop: '6px'}}>Sex <span className={styles.required}>(required)</span></label>
-                        <div className={styles.radioGroup}>
-                            <label>
-                                <input
-                                    type="radio"
-                                    name="sex"
-                                    value="male"
-                                    checked={user?.profile.gender === "male"}
-                                /> Male
-                            </label>
-                            <label>
-                                <input
-                                    type="radio"
-                                    name="sex"
-                                    value="female"
-                                    checked={user?.profile.gender === "female"}
-                                /> Female
-                            </label>
+                <div className='d-flex flex-column relative'>
+                    <div className='d-flex mb-16'>
+                        <label className='w-32per fs-16 font-bold mt-8 pr-16 text-right' style={{marginTop: '6px'}}>Sex <span className='fw-normal ml-4 fs-12 text-gray'>(required)</span></label>
+                        <div className='w-100'>
+                            <div className='d-flex gap-20px'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="sex"
+                                        value="male"
+                                        checked={user?.profile.gender === "male"}
+                                    /> Male
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="sex"
+                                        value="female"
+                                        checked={user?.profile.gender === "female"}
+                                    /> Female
+                                </label>
+                            </div>
+                            <div className='fs-13 mt-6 text-color'>This field may be seen by: <strong>Only Me</strong></div>
                         </div>
-                        <div className={styles.note}>This field may be seen by: <strong>Only Me</strong></div>
                     </div>
                 </div>
 
                 {/* City */}
-                <div className={styles.formGroup}>
-                    <div className={styles.fieldSet}>
-                        <label className={styles.labelEdit}>City <span className={styles.required}>(required)</span></label>
-                        <input type="text" className={styles.input} defaultValue={user?.profile.location} />
-                        <div className={styles.note}>This field may be seen by: <strong>Only Me</strong></div>
+                <div className='d-flex flex-column relative'>
+                    <div className='d-flex mb-16'>
+                        <label className='w-32per fs-16 font-bold mt-8 pr-16 text-right'>City <span className='fw-normal ml-4 fs-12 text-gray'>(required)</span></label>
+                        <div className='w-100'>
+                            <input type="text" className='w-90per h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24' defaultValue={user?.profile.location} />
+                            <div className='fs-13 mt-6 text-color'>This field may be seen by: <strong>Only Me</strong></div>
+                        </div>
                     </div>
                 </div>
 
                 {/* Country */}
-                <div className={styles.formGroup}>
-                    <div className={styles.fieldSet}>
-                        <label className={styles.labelEdit}>Country <span className={styles.required}>(required)</span></label>
-                        <select className={styles.select} defaultValue={user?.profile.website}>
-                            <option>Armenia</option>
-                        </select>
-                        <div className={styles.note}>This field may be seen by: <strong>Only Me</strong></div>
+                <div className='d-flex flex-column relative'>
+                    <div className='d-flex mb-16'>
+                        <label className='w-32per fs-16 font-bold mt-8 pr-16 text-right'>Country <span className='fw-normal ml-4 fs-12 text-gray'>(required)</span></label>
+                        <div className='w-100'>
+                            <select className='select w-90per' defaultValue={user?.profile.website}>
+                                <option>Armenia</option>
+                            </select>
+                            <div className='fs-13 mt-6 text-color'>This field may be seen by: <strong>Only Me</strong></div>
+                        </div>
                     </div>
                 </div>
 
-                <button type="submit" className={styles.saveButton}>Save Changes</button>
+                <button type="submit" className='w-50per mx-auto btn-gradient-purple text-white py-8 cursor-pointer radius-24'>Save Changes</button>
             </form>
         </div>
     );
