@@ -1,4 +1,4 @@
-export const BaseURL = 'https://com.delichat.online/api';
+export const BaseURL = 'http://localhost:8080';
 
 export const AuthAPI = `${BaseURL}/auth`;
 export const AccountAPI = `${AuthAPI}/accounts`;
