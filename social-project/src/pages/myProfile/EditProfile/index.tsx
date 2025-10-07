@@ -110,20 +110,7 @@ const EditProfile: React.FC = () => {
                     <div className='d-flex mb-16'>
                         <label className='w-32per fs-16 font-bold mt-8 pr-16 text-right'>City <span className='fw-normal ml-4 fs-12 text-gray'>(required)</span></label>
                         <div className='w-100'>
-                            <input type="text" className='w-90per h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24' defaultValue={user?.profile.location} />
-                            <div className='fs-13 mt-6 text-color'>This field may be seen by: <strong>Only Me</strong></div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Country */}
-                <div className='d-flex flex-column relative'>
-                    <div className='d-flex mb-16'>
-                        <label className='w-32per fs-16 font-bold mt-8 pr-16 text-right'>Country <span className='fw-normal ml-4 fs-12 text-gray'>(required)</span></label>
-                        <div className='w-100'>
-                            <select className='select w-90per' defaultValue={user?.profile.website}>
-                                <option>Armenia</option>
-                            </select>
+                            <input type="text" className='w-90per h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24' defaultValue={user?.province.name} />
                             <div className='fs-13 mt-6 text-color'>This field may be seen by: <strong>Only Me</strong></div>
                         </div>
                     </div>

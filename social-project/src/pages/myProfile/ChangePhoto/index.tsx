@@ -10,11 +10,6 @@ const ContextType = {
     CONVERSATION: 'CONVERSATION',
 } as const;
 
-// Hàm giả định lấy Token (Thay thế bằng logic thực tế của bạn: Context/Redux/etc.)
-const getAuthToken = (): string => {
-    return localStorage.getItem('authToken') || ''; 
-};
-
 // Hàm phụ trợ để xác định MediaType
 const getMediaType = (contentType: string): string => {
     if (contentType.startsWith("image/")) return 'IMAGE';
@@ -199,13 +194,13 @@ const ChangePhoto: React.FC = () => {
         }
 
         return (
-            <>
+            <div className="w-100 radius-12 p-40 text-center text-color border-dash-gray">
                 <UserRound size={60} className="text-primary mb-2" />
-                <p className="fw-bold mb-1">Kéo thả ảnh vào đây</p>
-                <p className="text-muted mb-3">Dạng: JPG/PNG, Max: 5MB</p>
+                <p className="fw-bold mb-2">Drop your file here</p>
+                <p className="text-muted">Require: JPG/PNG, Max: 5MB</p>
                 
-                <label htmlFor="file-upload" className="btn btn-primary d-flex align-items-center">
-                    <UploadCloud size={18} className="me-2" /> Chọn file
+                <label htmlFor="file-upload" className="btn-gradient-purple py-12 px-32 text-white mt-16 cursor-pointer">
+                    <UploadCloud size={18} className="me-2" /> Select your file
                 </label>
                 
                 <input
@@ -215,17 +210,17 @@ const ChangePhoto: React.FC = () => {
                     onChange={handleFileSelect}
                     className="d-none"
                 />
-            </>
+            </div>
         );
     }, [imagePreviewUrl, imageFile]);
 
     return (
-        <div className="card p-4 mx-auto shadow-lg" style={{ maxWidth: '600px' }}>
-            <h2 className='fs-4 mb-3 text-dark'>Cập nhật Ảnh đại diện</h2>
+        <div>
+            <h2 className='fs-24 mb-12 text-color'>Change Profile Photo</h2>
 
-            <div className='alert alert-info d-flex align-items-center gap-2' role="alert">
-                <MessageCircleWarning size={20} />
-                <p className="m-0">Ảnh đại diện sẽ hiển thị ở hồ sơ và các bình luận của bạn.</p>
+            <div className='d-flex align-center gap-8px bg-white p-24 my-16 relative box-shadow radius-12 border-top-primary' role="alert">
+                <MessageCircleWarning size={16} className="text-purple" />
+                <p className="fs-14 fw-normal lh-16 text-color">Ảnh đại diện sẽ hiển thị ở hồ sơ và các bình luận của bạn.</p>
             </div>
 
             <div
@@ -246,7 +241,7 @@ const ChangePhoto: React.FC = () => {
                 <button 
                     onClick={handleUpload} 
                     disabled={isUploading}
-                    className="btn btn-success d-flex align-items-center justify-content-center w-100 py-2 gap-2"
+                    className="btn-gradient-purple d-flex align-items-center justify-content-center w-100 py-12 gap-2 text-white"
                 >
                     {isUploading ? (
                         <>
