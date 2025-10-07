@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Phone, Mail, Globe, ExternalLink, MoreHorizontal } from 'lucide-react';
 import avatar from '../../assets/imgs/tindepchai.jpg';
 import { useAuth } from '../../hooks/useAuth';
-import { avatarDefault } from '../default-avt';
+import { avatarDefault } from '../Avatar/default-avt';
 import { useNavigate } from 'react-router-dom';
+import { getUserAvatar } from '../Avatar/avatar';
 
 interface StoryHighlight {
   id: string;
@@ -32,6 +33,13 @@ const Sidebar: React.FC<SidebarProps> = () => {
   const navigate = useNavigate();
   const [showFullBio, setShowFullBio] = useState(false);
   const { user } = useAuth();
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (user?.profile?.avatarUrl) {
+      getUserAvatar(user.profile.avatarUrl).then(setAvatarUrl);
+    }
+  }, [user]);
 
   const defaultUser = {
     name: "X_AE.C-921",
@@ -63,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
             className="relative d-inline-block mb-16"
             onClick={() => navigate('my-profile')}
           >
-            <img src={user?.profile.avatarUrl || avatarDefault} alt={user?.profile.fullName} className="avatar-lg radius-50 object-cover box-shadow" />
+            <img src={avatarUrl  || avatarDefault} alt={user?.profile.fullName} className="avatar-lg radius-50 object-cover box-shadow" />
             {user?.online && <div className="status-badge"></div>}
           </div>
           <h2 className="fs-20 fw-semibold text-color mb-8">{user?.profile.fullName}</h2>

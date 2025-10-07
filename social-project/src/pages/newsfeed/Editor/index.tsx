@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Paperclip, SquarePen, X } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 import { BaseURL } from '../../../api';
 import axios from "axios";
-import { avatarDefault } from '../../../component_helper/default-avt';
+import { avatarDefault } from '../../../component_helper/Avatar/default-avt';
+import { getUserAvatar } from '../../../component_helper/Avatar/avatar';
 
 interface FileType {
     name: string;
@@ -16,6 +17,8 @@ const Editor: React.FC = () => {
 
     const { user } = useAuth();
 
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
     const [isExpanded, setIsExpanded] = useState(false);
 
     const [content, setContent] = useState("");
@@ -25,6 +28,12 @@ const Editor: React.FC = () => {
     const [files, setFiles] = useState<File[]>([]);
 
     const [newPost, setNewPost] = useState(null);
+
+    useEffect(() => {
+        if (user?.profile?.avatarUrl) {
+          getUserAvatar(user.profile.avatarUrl).then(setAvatarUrl);
+        }
+      }, [user]);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -118,7 +127,7 @@ const Editor: React.FC = () => {
             <form onSubmit={handleSubmit}>
                 <div className="d-flex align-center gap-16px">
                     <img
-                        src={user?.profile.avatarUrl || avatarDefault}
+                        src={avatarUrl || avatarDefault}
                         alt="avatar"
                         className="w-40 h-40 radius-50 object-cover"
                     />

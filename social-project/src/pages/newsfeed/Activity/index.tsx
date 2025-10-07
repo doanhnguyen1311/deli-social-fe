@@ -15,7 +15,8 @@ import angry from '../../../assets/imgs/angry.jpg';
 import axios from 'axios';
 import { BaseURL, GetUserByIdAPI } from '../../../api';
 import Loading from '../../../component_helper/Loading';
-import { avatarDefault } from '../../../component_helper/default-avt';
+import { avatarDefault } from '../../../component_helper/Avatar/default-avt';
+import { getUserAvatar } from '../../../component_helper/Avatar/avatar';
 
 const reactions = [
   { name: "like",  icon: like,  color: "text-blue-500" },
@@ -83,6 +84,8 @@ const Activity: React.FC = () => {
   
   const { user } = useAuth();
 
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
   const [posts, setPosts] = useState<FeedItem[]>(mockPosts);
 
   const [loading, setLoading] = useState(false);
@@ -137,6 +140,11 @@ const Activity: React.FC = () => {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
               });
               userProfile = userRes.data?.data || null;
+
+              if (userProfile?.profile?.avatarUrl) {
+                const realAvatarUrl = await getUserAvatar(userProfile.profile.avatarUrl);
+                userProfile.profile.avatarUrl = realAvatarUrl;
+              }
             } catch (err) {
               console.error("Error fetching user info:", err);
             }
@@ -197,7 +205,7 @@ const Activity: React.FC = () => {
               <div className="d-flex justify-between align-center mb-16">
                 <div className="d-flex align-center gap-12px">
                   <img 
-                    src={post.userProfile?.profile.avatarUrl || avatarDefault} 
+                    src={post.userProfile?.profile?.avatarUrl || avatarDefault} 
                     alt="avatar"
                     className="w-40 h-40 radius-50 object-cover"
                   />
@@ -358,7 +366,7 @@ const Activity: React.FC = () => {
                 <div className="mt-16 pt-16 border-top-light">
                   <div className="d-flex gap-12px">
                     <img
-                      src={user?.profile?.avatarUrl || avatarDefault}
+                      src={avatarUrl || avatarDefault}
                       alt="avatar"
                       className="w-40 h-40 radius-50 object-cover"
                     />
