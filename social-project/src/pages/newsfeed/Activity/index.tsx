@@ -358,9 +358,9 @@ const Activity: React.FC = () => {
                 <div className="mt-16 pt-16 border-top-light">
                   <div className="d-flex gap-12px">
                     <img
-                      src={user?.profile?.avatarUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=30&h=30&fit=crop&crop=face"}
+                      src={user?.profile?.avatarUrl || avatarDefault}
                       alt="avatar"
-                      className="w-30 h-30 radius-50 object-cover"
+                      className="w-40 h-40 radius-50 object-cover"
                     />
                     <div className="flex-1">
                       <input 

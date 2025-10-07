@@ -145,6 +145,14 @@ select {
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
+.hover-bg-light:hover {
+	background: #f9fafb;
+}
+
+.hover-bg-gray:hover {
+	background-color: #f9fafb !important;
+}
+
 /* Margin */
 .m-auto {
 	margin: auto;
@@ -894,13 +902,7 @@ select {
 	color: #212121 !important;
 }
 
-.hover-bg-light:hover {
-	background: #f9fafb;
-}
 
-.hover-bg-gray:hover {
-	background-color: #f9fafb !important;
-}
 
 // Line Height
 .lh-16 {

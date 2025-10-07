@@ -119,18 +119,18 @@ const Header: React.FC<HeaderProps> = ({ activeTab = 'feeds', scrollContainer })
         {/* Setting + Logout */}
         <div className="d-flex align-center gap-8px">
           <button 
-            className="d-flex flex-column align-center gap-6px py-6 px-12 text-gray fs-14 fw-medium cursor-pointer radius-16 hover-bg"
+            className="d-flex flex-column align-center gap-6px py-6 px-12 fs-14 fw-medium cursor-pointer radius-16 hover-bg text-purple"
             onClick={() => navigate('/settings')}
           >
-            <Settings size={18} />
-            <span>Setting</span>
+            <Settings size={16} />
+            <span className="fs-14 nav-label">Setting</span>
           </button>
           <button
-            className="d-flex flex-column align-center gap-6px py-6 px-12 text-gray fs-14 fw-medium cursor-pointer radius-16 hover-bg"
+            className="d-flex flex-column align-center gap-6px py-6 px-12 fs-14 fw-medium cursor-pointer radius-16 hover-bg text-purple"
             onClick={handleLogout}
           >
-            <LogOut size={18} />
-            <span>Logout</span>
+            <LogOut size={16} />
+            <span className="fs-14 nav-label">Logout</span>
           </button>
         </div>
 
