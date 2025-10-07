@@ -150,12 +150,20 @@ select {
 	margin: auto;
 }
 
+.my-16 {
+	margin: 16px 0;
+}
+
 .mx-auto {
 	margin: 0 auto;
 }
 
 .mx-16 {
 	margin: 0 16px;
+}
+
+.mt-n5 {
+	margin-top: -5px;
 }
 
 .mt-4 {
@@ -257,6 +265,10 @@ select {
 
 .p-36 {
 	padding: 36px;
+}
+
+.p-40 {
+	padding: 40px;
 }
 
 .pb-24 {
@@ -750,7 +762,7 @@ select {
 }
 
 .text-hover-underline:hover {
-	text-decoration: underline;
+	text-decoration: underline !important;
 }
 
 .fw-normal {
@@ -938,16 +950,24 @@ select {
 	transition: border-color 0.2s ease;
 }
 
-.border-top-gray {
-	border-top: 1px solid #f3f4f6;
-}
-
 .border-light-gray {
 	border: 1px solid #e7edf2;
 }
 
+.border-top-gray {
+	border-top: 1px solid #f3f4f6;
+}
+
 .border-top-light {
 	border-top: 1px solid #e7edf2;
+}
+
+.border-top-primary {
+	border-top: 2px solid var(--default-color);
+}
+
+.border-dash-gray {
+	border: 2px dashed #ccc;
 }
 
 /* Position */
@@ -1029,6 +1049,15 @@ select {
 
 .overflow-y-auto {
 	overflow-y: auto;
+}
+
+// Box
+.warning-box {
+	background-color: #ffd;
+	border: 1px solid #cb2;
+	display: block;
+	font-size: 90%;
+	padding: 10px 15px;
 }
 
 /* Button */

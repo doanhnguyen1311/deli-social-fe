@@ -7,25 +7,25 @@ const ChangeCover: React.FC = () => {
     return (
         <div className={styles.changePhoto}>
             {/* Title */}
-            <h2 className={styles.title}>Change Cover Image</h2>
+            <h2 className='fs-24 mb-12 text-color'>Change Cover Image</h2>
 
             {/* Info Box */}
-            <div className={styles.infoBox}>
-                <MessageCircleWarning size={16} style={{marginTop: '6px', color: '#8224e3'}} />
-                <p>
+            <div className='d-flex align-center gap-8px bg-white p-24 my-16 relative box-shadow radius-12 border-top-primary'>
+                <MessageCircleWarning size={16} className='text-purple' />
+                <p className='fs-14 fw-normal lh-16 text-color'>
                     Your Cover Image will be used to customize the header of your profile.
                 </p>
             </div>
 
             {/* Select File Box */}
-            <div className={styles.dropzone}>
+            <div className='radius-12 p-40 text-center text-color border-dash-gray'>
                 <p>Drop your file here</p>
-                <button className={styles.selectFile}>Select your file</button>
+                <button className='btn-gradient-purple py-12 px-32 text-white mt-16'>Select your file</button>
             </div>
 
             {/* Warning */}
-            <div className={styles.warningBox}>
-                <p className={styles.text}>
+            <div className='warning-box my-16 radius-12'>
+                <p className='fs-14 fw-normal lh-16 text-color'>
                     For better results, make sure to upload an image that is larger than 1920px wide, and 280px tall.
                 </p>
             </div>
