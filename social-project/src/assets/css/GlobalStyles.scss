@@ -972,6 +972,10 @@ select {
 	border: 2px dashed #ccc;
 }
 
+.border-none {
+	border: none;
+}
+
 /* Position */
 .relative {
 	position: relative;
@@ -1194,6 +1198,27 @@ select {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
+.tab {
+	cursor: pointer;
+	color: #29292d;
+	position: relative;
+}
+
+.tab.active {
+	color: var(--default-color);
+  	font-weight: 600 !important;
+}
+
+.tab.active::after {
+	content: "";
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	height: 2px;
+	width: 100%;
+	background-color: var(--default-color);
+}
+
 /* Cursor */
 .cursor-pointer {
 	cursor: pointer;
@@ -1236,6 +1261,10 @@ th {
 
 .border-bottom-white {
 	border-bottom: 24px solid #fff;
+}
+
+.border-bottom-gray-200 {
+	border-bottom: 1px solid #e5e7eb;
 }
 
 // Avatar

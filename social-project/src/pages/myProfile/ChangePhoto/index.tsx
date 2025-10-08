@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { MessageCircleWarning, UploadCloud, X, Save, UserRound, ImagePlus } from "lucide-react";
 import { BaseURL } from "../../../api";
+import { ToastContainer, toast } from 'react-toastify';
 
 // Enum ContextType phải khớp với enum Java của bạn
 const ContextType = {
@@ -33,7 +34,7 @@ const ChangePhoto: React.FC = () => {
             setImageFile(file);
             setImagePreviewUrl(URL.createObjectURL(file));
         } else {
-            alert("Vui lòng chọn một file ảnh hợp lệ (JPG/PNG/GIF).");
+            toast.warning("Vui lòng chọn một file ảnh hợp lệ (JPG/PNG/GIF).");
         }
     };
 
@@ -148,7 +149,7 @@ const ChangePhoto: React.FC = () => {
             console.log(updateData);
             
             if (updateResponse.ok && updateData.success) {
-                alert("Cập nhật Ảnh đại diện thành công! 🎉");
+                toast.success("Cập nhật ảnh đại diện thành công!");
                 handleRemoveImage();
             }
             
@@ -158,7 +159,7 @@ const ChangePhoto: React.FC = () => {
 
         } catch (error) {
             console.error("Lỗi quá trình upload:", error);
-            alert(`Lỗi: Không thể cập nhật ảnh đại diện. Vui lòng thử lại.`);
+            toast.error("Không thể cập nhật ảnh đại diện. Vui lòng thử lại.");
         } finally {
             setIsUploading(false);
         }
@@ -193,13 +194,6 @@ const ChangePhoto: React.FC = () => {
                                 <X size={16} /> Hủy
                             </button>
                         </div>
-                        {/* <button 
-                            onClick={handleRemoveImage} 
-                            className="d-flex btn btn-danger p-1 position-absolute top-0 end-0 rounded-circle"
-                            title="Xóa ảnh"
-                        >
-                            <X size={20} />
-                        </button> */}
                     </div>
 
                     <div className="text-center mt-3" style={{ fontSize: '14px' }}>
@@ -233,6 +227,7 @@ const ChangePhoto: React.FC = () => {
 
     return (
         <div>
+            <ToastContainer position="top-right" autoClose={3000} />
             <h2 className='fs-24 mb-12 text-color'>Change Profile Photo</h2>
 
             <div className='d-flex align-center gap-8px bg-white p-24 my-16 relative box-shadow radius-12 border-top-primary' role="alert">

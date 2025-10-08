@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { BaseURL } from "../../../api";
 import { updateProfile } from "../../../api/authAPI";
+import { ToastContainer, toast } from 'react-toastify';
 
 interface Province {
     id: number;
@@ -91,17 +92,18 @@ const EditProfile: React.FC = () => {
         try {
             const res = await updateProfile(user.id, data);
             if (res.success) {
-                alert("Cập nhật hồ sơ thành công!");
+                toast.success("Cập nhật hồ sơ thành công!");
                 console.log("New profile:", res.data);
             }
         } catch (error: any) {
             console.error("Error updating profile:", error);
-            alert("Cập nhật thất bại: " + error.message);
+            toast.error("Cập nhật thất bại");
         }
     };
 
     return (
         <div>
+            <ToastContainer position="top-right" autoClose={3000} />
             <h2 className="fs-24 mb-12 text-color">Edit Profile</h2>
             <h4 className="fs-16 text-color">Editing "Base" Profile Group</h4>
             <hr className="divider" />
@@ -116,7 +118,7 @@ const EditProfile: React.FC = () => {
                         <div className="w-100">
                             <input
                                 type="text"
-                                className="w-90per h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24"
+                                className="w-90per fs-14 h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24"
                                 value={fullName}
                                 onChange={(e) => setFullName(e.target.value)}
                             />
@@ -162,7 +164,7 @@ const EditProfile: React.FC = () => {
                             Sex <span className="fw-normal ml-4 fs-12 text-gray">(required)</span>
                         </label>
                         <div className="w-100">
-                            <div className="d-flex gap-20px">
+                            <div className="d-flex gap-20px fs-14">
                                 <label>
                                     <input
                                         type="radio"
@@ -197,7 +199,7 @@ const EditProfile: React.FC = () => {
                         </label>
                         <div className="w-100">
                             <select
-                                className="w-90per h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24"
+                                className="w-90per fs-14 h-40 bg-gray-500 px-16 py-6 lh-16 text-color radius-24 cursor-pointer border-none"
                                 value={selectedProvince}
                                 onChange={(e) => setSelectedProvince(e.target.value)}
                             >

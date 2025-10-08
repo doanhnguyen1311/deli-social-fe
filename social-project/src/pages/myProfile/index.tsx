@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./index.module.css";
 import ViewProfile from "./ViewProfile";
 import EditProfile from "./EditProfile";
 import ChangePhoto from "./ChangePhoto";
@@ -9,28 +8,28 @@ const MyProfile: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"view" | "edit" | "photo" | "cover">("view");
 
     return (
-        <div className={`bg-white radius-24 p-16`}>
-            <div className={styles.tabs}>
+        <div className='bg-white radius-24 p-16 box-shadow'>
+            <div className='border-bottom-gray-200 d-flex mb-24 gap-20px'>
                 <div
-                    className={`${styles.tab} ${activeTab === "view" ? styles.active : ""}`}
+                    className={`tab p-8 fs-14 fw-semibold ${activeTab === "view" ? 'active' : ""}`}
                     onClick={() => setActiveTab("view")}
                 >
                     View
                 </div>
                 <div
-                    className={`${styles.tab} ${activeTab === "edit" ? styles.active : ""}`}
+                    className={`tab p-8 fs-14 fw-semibold ${activeTab === "edit" ? 'active' : ""}`}
                     onClick={() => setActiveTab("edit")}
                 >
                     Edit
                 </div>
                 <div
-                    className={`${styles.tab} ${activeTab === "photo" ? styles.active : ""}`}
+                    className={`tab p-8 fs-14 fw-semibold ${activeTab === "photo" ? 'active' : ""}`}
                     onClick={() => setActiveTab("photo")}
                 >
                     Change Profile Photo
                 </div>
                 <div
-                    className={`${styles.tab} ${activeTab === "cover" ? styles.active : ""}`}
+                    className={`tab p-8 fs-14 fw-semibold ${activeTab === "cover" ? 'active' : ""}`}
                     onClick={() => setActiveTab("cover")}
                 >
                     Change Cover Image

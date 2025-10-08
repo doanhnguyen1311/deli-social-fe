@@ -18,6 +18,11 @@ import Loading from '../../../component_helper/Loading';
 import { avatarDefault } from '../../../component_helper/Avatar/default-avt';
 import { getUserAvatar } from '../../../component_helper/Avatar/avatar';
 
+interface ActivityProps {
+  posts?: FeedItem[];
+  setPosts?: React.Dispatch<React.SetStateAction<FeedItem[]>>;
+}
+
 const reactions = [
   { name: "like",  icon: like,  color: "text-blue-500" },
   { name: "love",  icon: love,  color: "text-red-500" },
@@ -80,31 +85,23 @@ const mockPosts: FeedItem[] = [
   }
 ];
 
-const Activity: React.FC = () => {
-  
+const Activity: React.FC<ActivityProps> = ({ posts: externalPosts, setPosts: setExternalPosts }) => {
   const { user } = useAuth();
-
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-
-  const [posts, setPosts] = useState<FeedItem[]>(mockPosts);
-
+  const [posts, setPosts] = useState<FeedItem[]>(externalPosts || mockPosts);
   const [loading, setLoading] = useState(false);
-
   const [showMenu, setShowMenu] = useState<number | null>(null);
-
   const [isExpanded, setIsExpanded] = useState<number | null>(null);
-
   const [selectedReaction, setSelectedReaction] = useState<{ [key: number]: string | null }>({});
-
   const [showReactions, setShowReactions] = useState<number | null>(null);
-
   const [showShareMenu, setShowShareMenu] = useState<number | null>(null);
-
   const menuRef = useRef<HTMLDivElement>(null);
-
   const shareMenuRef = useRef<HTMLDivElement>(null);
-
   const timeoutRef = useRef<number | null>(null);
+  const effectiveSetPosts = setExternalPosts || setPosts;
+
+  useEffect(() => {
+    if (externalPosts) effectiveSetPosts(externalPosts);
+  }, [externalPosts]);
 
   useEffect(() => {
     if (!user?.id) return;
@@ -366,7 +363,7 @@ const Activity: React.FC = () => {
                 <div className="mt-16 pt-16 border-top-light">
                   <div className="d-flex gap-12px">
                     <img
-                      src={avatarUrl || avatarDefault}
+                      src={post.userProfile?.profile.avatarUrl || avatarDefault}
                       alt="avatar"
                       className="w-40 h-40 radius-50 object-cover"
                     />

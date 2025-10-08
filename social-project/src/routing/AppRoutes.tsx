@@ -44,8 +44,8 @@ const AppRoutes: FC = () => {
                     <Route element={<GroupLayout />}>
                         <Route path="group/:id/group-home" element={<GroupDetail />} />
                     </Route>
+                    <Route path="*" element={<NotFound />} />
                 </Route>
-                <Route path="/" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     )

@@ -11,22 +11,18 @@ interface FileType {
     type: string;
 }
 
-const Editor: React.FC = () => {
-    
+interface EditorProps {
+    onNewPost?: (post: any) => void;
+}
+
+const Editor: React.FC<EditorProps> = ({ onNewPost }) => {
     const token = localStorage.getItem("token");
-
     const { user } = useAuth();
-
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-
     const [isExpanded, setIsExpanded] = useState(false);
-
     const [content, setContent] = useState("");
-
     const [visibility, setVisibility] = useState("PUBLIC");
-
     const [files, setFiles] = useState<File[]>([]);
-
     const [newPost, setNewPost] = useState(null);
 
     useEffect(() => {
@@ -114,6 +110,7 @@ const Editor: React.FC = () => {
             }
             
             setNewPost(createdPost);
+            onNewPost?.(createdPost);
             setContent("");
             setFiles([]);
             setVisibility("PUBLIC");

@@ -35,9 +35,9 @@ export default function NotFound() {
   }, []);
 
   return (
-    <section className="d-flex align-items-center min-vh-100 py-5">
-      <div className="container py-5">
-        <div className="row align-items-center">
+    <section className="d-flex align-items-center min-vh-100 w-100">
+      <div className="bg-white w-100 px-5">
+        <div className="row align-items-center h-100vh">
           <div className="col-md-6 order-md-2">
             <div className="lc-block">
             <div
