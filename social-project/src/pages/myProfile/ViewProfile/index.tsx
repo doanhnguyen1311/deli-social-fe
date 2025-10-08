@@ -25,7 +25,7 @@ const ViewProfile: React.FC = () => {
                     </tr>
                     <tr>
                         <td className='bg-gray fs-14 pl-16 font-bold border-bottom-gray text-color'>City</td>
-                        <td className='bg-white fs-14 p-12 pl-16 border-bottom-gray'>{user?.province.name}</td>
+                        <td className='bg-white fs-14 p-12 pl-16 border-bottom-gray'>{user?.profile.location}</td>
                     </tr>
                     <tr>
                         <td className='bg-gray fs-14 pl-16 font-bold text-color'>Website</td>

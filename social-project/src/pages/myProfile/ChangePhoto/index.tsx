@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
-import { MessageCircleWarning, UploadCloud, X, Save, UserRound } from "lucide-react"; 
-// BaseURL giả định được import từ file cấu hình API của bạn
+import { MessageCircleWarning, UploadCloud, X, Save, UserRound, ImagePlus } from "lucide-react";
 import { BaseURL } from "../../../api";
+import { useAuth } from "../../../hooks/useAuth";
 
 // Enum ContextType phải khớp với enum Java của bạn
 const ContextType = {
@@ -146,13 +146,16 @@ const ChangePhoto: React.FC = () => {
             });
 
             const updateData = await updateResponse.json();
+            console.log(updateData);
+            
+            if (updateResponse.ok && updateData.success) {
+                alert("Cập nhật Ảnh đại diện thành công! 🎉");
+                handleRemoveImage();
+            }
             
             if (!updateResponse.ok || !updateData.success) {
                 throw new Error(`Lỗi cập nhật hồ sơ: ${updateData.message || 'Không thể lưu mediaId.'}`);
             }
-
-            alert('Cập nhật Ảnh đại diện thành công! 🎉');
-            handleRemoveImage();
 
         } catch (error) {
             console.error("Lỗi quá trình upload:", error);
@@ -169,20 +172,35 @@ const ChangePhoto: React.FC = () => {
             return (
                 <div className="d-flex flex-column align-items-center w-100 py-2">
                     
-                    <div className="position-relative mb-3 avatar-200">
+                    <div className="position-relative mb-3 avatar-200 hover-container">
                         <img 
                             src={imagePreviewUrl} 
                             alt="Ảnh đại diện" 
-                            className="rounded-circle w-100 h-100 object-fit-cover border border-primary border-3 shadow-sm"
+                            className="w-100 h-100 rounded-circle object-fit-cover border border-primary border-3 shadow-sm"
                         />
-                        <button 
+                        {/* Overlay hiển thị khi hover */}
+                        <div className="hover-overlay rounded-circle d-flex justify-content-center align-items-center gap-2">
+                            <label htmlFor="file-reupload" className="btn btn-light btn-sm d-flex align-items-center gap-1 cursor-pointer">
+                                <ImagePlus size={16} /> Đổi ảnh
+                            </label>
+                            <input
+                                id="file-reupload"
+                                type="file"
+                                accept="image/jpeg, image/png, image/gif"
+                                onChange={handleFileSelect}
+                                className="d-none"
+                            />
+                            <button onClick={handleRemoveImage} className="btn btn-danger btn-sm d-flex align-items-center gap-1">
+                                <X size={16} /> Hủy
+                            </button>
+                        </div>
+                        {/* <button 
                             onClick={handleRemoveImage} 
-                            className="btn btn-danger p-1 position-absolute top-0 end-0 rounded-circle"
+                            className="d-flex btn btn-danger p-1 position-absolute top-0 end-0 rounded-circle"
                             title="Xóa ảnh"
-                            style={{ transform: 'translate(25%, -25%)' }} 
                         >
                             <X size={20} />
-                        </button>
+                        </button> */}
                     </div>
 
                     <div className="text-center mt-3" style={{ fontSize: '14px' }}>
@@ -241,7 +259,7 @@ const ChangePhoto: React.FC = () => {
                 <button 
                     onClick={handleUpload} 
                     disabled={isUploading}
-                    className="btn-gradient-purple d-flex align-items-center justify-content-center w-100 py-12 gap-2 text-white"
+                    className="btn-gradient-purple d-flex align-items-center justify-content-center w-50 mx-auto py-12 gap-2 text-white"
                 >
                     {isUploading ? (
                         <>

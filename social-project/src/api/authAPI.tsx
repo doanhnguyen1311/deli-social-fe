@@ -129,6 +129,24 @@ export interface FeedResponse {
     success: boolean;
 }
 
+export interface UpdateProfileRequest {
+    fullName: string | null;
+    avatarUrl: string | null;
+    coverPhotoUrl: string | null;
+    bio: string | null;
+    gender: string | null;
+    birthday: string | null;
+    location: string | null;
+    website: string | null;
+}
+
+export interface UpdateProfileResponse {
+    data: UserInfo;
+    message: string;
+    statusCode: number;
+    success: boolean;
+}
+
 export const login = async (email: string, password: string): Promise<LoginResponse> => {
     const response = await fetch(`${AuthAPI}/login`, {
         method: "POST",
@@ -227,6 +245,36 @@ export async function getNewFeeds(): Promise<FeedResponse> {
         return data;
     } catch (error) {
         console.error("Lỗi khi gọi API:", error);
+        throw error;
+    }
+};
+
+export const updateProfile = async (
+    userId: string,
+    profileData: UpdateProfileRequest
+): Promise<UpdateProfileResponse> => {
+    const token = localStorage.getItem("token");
+    const url = `${BaseURL}/profiles/${userId}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+            body: JSON.stringify(profileData),
+        });
+
+        const data: UpdateProfileResponse = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Failed to update profile");
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error updating profile:", error);
         throw error;
     }
 };
