@@ -1,0 +1,251 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.bgCircle {
+    position: absolute;
+    width: 384px;
+    height: 384px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.bgCircle1 {
+    top: -192px;
+    left: -192px;
+}
+
+.bgCircle2 {
+    bottom: -192px;
+    right: -192px;
+    animation-delay: 700ms;
+}
+
+@keyframes pulse {
+    0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+    }
+    50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.numberWrapper {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.number {
+    font-size: 200px;
+    font-weight: 900;
+    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+    user-select: none;
+}
+
+.numberShadow {
+    position: absolute;
+    inset: 0;
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.2);
+    filter: blur(40px);
+    line-height: 1;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .number,
+    .numberShadow {
+    font-size: 144px;
+    }
+}
+
+.messageBox {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .title {
+    font-size: 1.875rem;
+    }
+}
+
+.description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 28rem;
+    line-height: 1.6;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width: 640px) {
+    .buttonGroup {
+    flex-direction: column;
+    }
+}
+
+.primaryButton,
+.secondaryButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.primaryButton {
+    background: white;
+    color: #a855f7;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.primaryButton:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.primaryButton .icon {
+    transition: transform 0.3s ease;
+}
+
+.primaryButton:hover .icon {
+    transform: translateY(-2px);
+}
+
+.secondaryButton {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.secondaryButton:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.secondaryButton .icon {
+    transition: transform 0.3s ease;
+}
+
+.secondaryButton:hover .icon {
+    transform: translateX(-4px);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.dots {
+    margin-top: 4rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.dot2 {
+    animation-delay: 150ms;
+}
+
+.dot3 {
+    animation-delay: 300ms;
+}
+
+@keyframes bounce {
+    0%, 100% {
+    transform: translateY(0);
+    }
+    50% {
+    transform: translateY(-10px);
+    }
+}
+
+.floatingIcon1,
+.floatingIcon2 {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.2);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.floatingIcon1 {
+    top: 5rem;
+    left: 5rem;
+}
+
+.floatingIcon2 {
+    bottom: 5rem;
+    right: 5rem;
+    animation-delay: 500ms;
+}
+
+@media (max-width: 768px) {
+    .floatingIcon1 {
+    top: 2rem;
+    left: 2rem;
+    }
+    
+    .floatingIcon2 {
+    bottom: 2rem;
+    right: 2rem;
+    }
+}

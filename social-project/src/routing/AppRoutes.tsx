@@ -17,15 +17,16 @@ import NotificationPanel from "../pages/notificationPanel";
 import { GroupLayout } from "../layouts/GroupLayout";
 import GroupDetail from "../pages/groupDetail";
 import UserProfile from "../pages/userProfile";
+import NotFound from "../pages/notfound";
 
 const AppRoutes: FC = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route element={<App />}>
-                    <Route path="/" element={
+                    {/* <Route path="/" element={
                         <Login />
-                    } />
+                    } /> */}
                     <Route element={<MasterLayout />}>
                         <Route path="feeds" element={<NewsFeed />} />
                         <Route path="watch" element={<Watch />} />
@@ -44,6 +45,7 @@ const AppRoutes: FC = () => {
                         <Route path="group/:id/group-home" element={<GroupDetail />} />
                     </Route>
                 </Route>
+                <Route path="/" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     )
