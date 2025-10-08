@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { MessageCircleWarning, UploadCloud, X, Save, UserRound, ImagePlus } from "lucide-react";
 import { BaseURL } from "../../../api";
-import { useAuth } from "../../../hooks/useAuth";
 
 // Enum ContextType phải khớp với enum Java của bạn
 const ContextType = {
