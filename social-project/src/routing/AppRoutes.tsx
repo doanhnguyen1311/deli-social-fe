@@ -24,9 +24,9 @@ const AppRoutes: FC = () => {
         <BrowserRouter>
             <Routes>
                 <Route element={<App />}>
-                    {/* <Route path="/" element={
+                    <Route path="/" element={
                         <Login />
-                    } /> */}
+                    } />
                     <Route element={<MasterLayout />}>
                         <Route path="feeds" element={<NewsFeed />} />
                         <Route path="watch" element={<Watch />} />
