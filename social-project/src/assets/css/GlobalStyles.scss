@@ -218,6 +218,10 @@ select {
 	margin-bottom: 24px;
 }
 
+.mb-40 {
+	margin-bottom: 40px;
+}
+
 .ml-auto {
 	margin-left: auto;
 }
@@ -304,23 +308,28 @@ select {
 }
 
 .px-8 {
-	padding-left: 8px;
-	padding-right: 8px;
+	padding-left: 8px !important;
+	padding-right: 8px !important;
 }
 
 .px-12 {
-	padding-left: 12px;
-	padding-right: 12px;
+	padding-left: 12px !important;
+	padding-right: 12px !important;
 }
 
 .px-16 {
-	padding-left: 16px;
-	padding-right: 16px;
+	padding-left: 16px !important;
+	padding-right: 16px !important;
+}
+
+.px-24 {
+	padding-left: 24px !important;
+	padding-right: 24px !important;
 }
 
 .px-32 {
-	padding-left: 32px;
-	padding-right: 32px;
+	padding-left: 32px !important;
+	padding-right: 32px !important;
 }
 
 .py-6 {
@@ -348,6 +357,11 @@ select {
 	padding-bottom: 24px;
 }
 
+.py-32 {
+	padding-top: 32px !important;
+	padding-bottom: 32px !important;
+}
+
 .pr-16 {
 	padding-right: 16px;
 }
@@ -370,7 +384,7 @@ select {
 }
 
 .radius-8 {
-	border-radius: 8px;
+	border-radius: 8px !important;
 }
 
 .radius-10 {
@@ -446,7 +460,7 @@ select {
 }
 
 .justify-start {
-	justify-content: start;
+	justify-content: start !important;
 }
 
 .align-center {
@@ -559,6 +573,10 @@ select {
 }
 
 /* Size */
+.h-4 {
+	height: 4px;
+}
+
 .h-12 {
 	height: 12px;
 }
@@ -691,6 +709,10 @@ select {
 	width: 476px;
 }
 
+.w-25per {
+	width: 25%;
+}
+
 .w-32per {
 	width: 32%;
 }
@@ -744,7 +766,6 @@ select {
 }
 
 /* text */
-
 .text-primary {
 	color: var(--default-color) !important;
 }
@@ -1370,6 +1391,36 @@ th {
 	animation: slideDown 0.3s ease-out forwards;
 }
 
+@keyframes slideInRight {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.animate-slideInRight {
+	animation: slideInRight 0.4s ease-out;
+}
+
+.animate-slideInLeft {
+	animation: slideInLeft 0.4s ease-out;
+}
+
 /* Status Badge - Chấm online indicator */
 .status-badge {
 	position: absolute;
@@ -1622,6 +1673,18 @@ th {
 	opacity: 0;
 }
 
+// Transition
+.transition-all {
+	transition-property: all;
+	transition-timing-function: cubic-bezier(.4,0,.2,1);
+	transition-duration: .15s;
+}
+
+// Duration
+.duration-300 {
+	transition-duration: .3s;
+}
+
 // Divider
 .divider {
 	border: none;
@@ -1630,6 +1693,16 @@ th {
 }
 
 /* loading.css */
+.loading-sm {
+	width: 20px !important;
+	height: 20px !important;
+	border: 4px solid #e5e7eb !important; /* màu xám nhạt */
+	border-top: 4px solid #3b82f6 !important; /* màu xanh dương */
+	border-radius: 50% !important;
+	animation: spin 1s linear infinite !important;
+	margin: auto !important;
+}
+
 .loading-spinner {
 	width: 40px !important;
 	height: 40px !important;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SocialIcons from "./SocialIcon";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { ToastContainer, toast } from 'react-toastify';
 
 const SignInForm: React.FC = () => {
 
@@ -13,30 +14,36 @@ const SignInForm: React.FC = () => {
     
     const [password, setPassword] = useState<string>("");
 
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsLoading(true);
 
         try {
             const userData = await login(email, password);
             console.log('userData', userData);
             
             if (userData) {
-                alert("Login successful!");
+                toast.success("Login successful!");
                 navigate('/feeds');
             }
 
         } catch (error) {
             console.error("Login error:", error);
             if (error instanceof Error) {
-                alert(`Login failed: ${error.message}`);
+                toast.error(`Login failed`);
             } else {
-                alert("Login failed: Unknown error");
+                toast.error("Login failed: Unknown error");
             }
+        } finally {
+            setIsLoading(false);
         }
     }
 
     return (
         <div className="form-container sign-in">
+            <ToastContainer position="top-right" autoClose={3000} />
             {/* onSubmit={handleSubmit} */}
             <form onSubmit={handleSubmit}>
                 <h1>Sign In</h1>
@@ -58,7 +65,17 @@ const SignInForm: React.FC = () => {
                 />
                 <a href="#">Forget Your Password?</a>
                 {/* <Link to={'feeds'}><button type="submit">Sign In</button></Link> */}
-                <button type="submit">Sign In</button>
+                <button type="submit" disabled={isLoading}>
+                    {isLoading ? (
+                        <span className="d-flex align-center justify-center gap-8px">
+                            <span className="loading-sm"></span>
+                            Logging in...
+                        </span>
+                    ) : (
+                        'Sign In'
+
+                    )}
+                </button>
             </form>
         </div>
     );
