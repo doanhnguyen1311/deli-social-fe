@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
-import styles from './index.module.css';
 import image from '../../assets/imgs/video.jpg';
 import type { Video } from './VideoCard';
 import VideoCard from './VideoCard';
@@ -70,36 +69,36 @@ const Watch: React.FC = () => {
     );
 
     return (
-        <div className="col-lg-8 p-36">
-            <div className={styles.header}>
-                <div className={styles.headerTop}>
-                    <h1 className={styles.title}>All Videos</h1>
+        <div className="bg-white box-shadow radius-24 py-16 px-16">
+            <div className='mb-32'>
+                <div className='d-flex align-center justify-between mb-24 border-bottom-gray'>
+                    <h1 className='fs-14 font-bold text-primary py-12 px-8 border-bottom-primary cursor-pointer'>All Videos</h1>
                 </div>
 
-                <div className={styles.searchContainer}>
+                <div className='d-flex align-center gap-8px pb-24'>
                     <input
                         type="text"
                         placeholder="Search Media"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className={styles.searchInput}
+                        className='py-10 px-14 radius-24 fs-14 border-gray'
                     />
-                    <button className={styles.searchButton}>
-                        <Search className={styles.searchIcon} />
+                    <button className='btn-gradient-purple d-flex align-center justify-center w-40 h-40 text-white py-8 lh-16'>
+                        <Search size={18} />
                     </button>
                 </div>
             </div>
 
-            <div className={styles.videoGrid}>
+            <div className='d-grid grid-cols-200-auto gap-24px'>
                 {filteredVideos.map((video) => (
                     <VideoCard key={video.id} video={video} />
                 ))}
             </div>
 
             {filteredVideos.length === 0 && (
-                <div className={styles.emptyState}>
-                    <div className={styles.emptyTitle}>No videos found</div>
-                    <div className={styles.emptySubtitle}>Try adjusting your search terms</div>
+                <div className='text-center py-48'>
+                    <div className='text-color fs-18 mb-8'>No videos found</div>
+                    <div className='text-gray fs-14'>Try adjusting your search terms</div>
                 </div>
             )}
         </div>

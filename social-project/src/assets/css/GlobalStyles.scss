@@ -338,6 +338,11 @@ select {
 	padding-right: 12px !important;
 }
 
+.px-14 {
+	padding-left: 14px !important;
+	padding-right: 14px !important;
+}
+
 .px-16 {
 	padding-left: 16px !important;
 	padding-right: 16px !important;
@@ -353,6 +358,11 @@ select {
 	padding-right: 32px !important;
 }
 
+.py-4 {
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
+}
+
 .py-6 {
 	padding-top: 6px;
 	padding-bottom: 6px;
@@ -361,6 +371,11 @@ select {
 .py-8 {
 	padding-top: 8px;
 	padding-bottom: 8px;
+}
+
+.py-10 {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .py-12 {
@@ -386,6 +401,11 @@ select {
 .py-32 {
 	padding-top: 32px !important;
 	padding-bottom: 32px !important;
+}
+
+.py-48 {
+	padding-top: 48px !important;
+	padding-bottom: 48px !important;
 }
 
 .pr-16 {
@@ -453,6 +473,10 @@ select {
 
 .grid-cols-auto {
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.grid-cols-200-auto {
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .grid-cols-250-auto {
@@ -607,6 +631,10 @@ select {
 	height: 12px;
 }
 
+.h-16 {
+	height: 16px;
+}
+
 .h-18 {
 	height: 18px;
 }
@@ -637,6 +665,10 @@ select {
 
 .h-64 {
 	height: 64px;
+}
+
+.h-240 {
+	height: 240px;
 }
 
 .h-80 {
@@ -695,6 +727,10 @@ select {
 	width: 12px;
 }
 
+.w-16 {
+	width: 16px;
+}
+
 .w-18 {
 	width: 18px;
 }
@@ -729,6 +765,10 @@ select {
 
 .w-60 {
 	width: 60px;
+}
+
+.w-64 {
+	width: 64px;
 }
 
 .w-80 {
@@ -1009,6 +1049,10 @@ select {
 	border-bottom: 1px solid #eaeaf1;
 }
 
+.border-bottom-primary {
+	border-bottom: 2px solid var(--default-color);
+}
+
 .border-x-primary {
 	border-right: 1px solid #e7edf2;
 	border-left: 1px solid #e7edf2;
@@ -1084,6 +1128,10 @@ select {
 	top: 0 !important;
 }
 
+.top-8 {
+	top: 8px !important;
+}
+
 .top-100per {
 	top: 100% !important;
 }
@@ -1110,6 +1158,14 @@ select {
 
 .left-0 {
 	left: 0 !important;
+}
+
+.right-0 {
+	right: 0 !important;
+}
+
+.right-8 {
+	right: 8px !important
 }
 
 /* Scroll */
@@ -1725,7 +1781,7 @@ th {
 	inset: 0;
 	background-color: rgba(100, 100, 100, 0.55);;
 	opacity: 0;
-	transition: opacity 0.5s ease-in-out;
+	transition: opacity 0.4s ease-in-out;
 }
 
 .hover-container:hover .hover-overlay {
@@ -1737,6 +1793,11 @@ th {
 	font-size: 13px;
 	padding: 6px 10px;
 	border-radius: 8px;
+}
+
+.hover-scale-300:hover img {
+	scale: 1.3;
+	transition: all .5s ease;
 }
 
 /* Class chung cho hiệu ứng trượt lên / trượt xuống */
