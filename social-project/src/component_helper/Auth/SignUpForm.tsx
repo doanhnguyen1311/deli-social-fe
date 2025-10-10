@@ -1,20 +1,59 @@
-import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, Image } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { BaseURL } from '../../api';
+
+interface FormData {
+  username: string;
+  email: string;
+  password: string;
+  fullName: string;
+  phoneNumber: string;
+  birthday: string;
+  gender: string;
+  location: string;
+  avatarUrl: string;
+  avatarFile?: File | null;
+}
+
+interface Province {
+  id: number;
+  code: string;
+  name: string;
+}
 
 const SignUpForm: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [direction, setDirection] = useState('forward');
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    fullName: '',
-    phoneNumber: '',
-    birthday: '',
-    gender: '',
-    location: '',
-    avatarUrl: ''
+  const [provinces, setProvinces] = useState<Province[]>([]);
+  const [selectedProvince, setSelectedProvince] = useState<string>("");
+  const [formData, setFormData] = useState<FormData>({
+    username: "",
+    email: "",
+    password: "",
+    fullName: "",
+    phoneNumber: "",
+    birthday: "",
+    gender: "",
+    location: "",
+    avatarUrl: "",
+    avatarFile: null 
   });
+
+  // Fetch provinces
+  useEffect(() => {
+      const fetchProvinces = async () => {
+          try {
+              const res = await fetch(`${BaseURL}/provinces`);
+              const data = await res.json();
+              if (data.success && Array.isArray(data.data)) {
+                  setProvinces(data.data);
+              }
+          } catch (error) {
+              console.error("Error fetching provinces:", error);
+          }
+      };
+      fetchProvinces();
+  }, []);
 
   const handleInputChange = (e:any) => {
     setFormData({
@@ -52,7 +91,6 @@ const SignUpForm: React.FC = () => {
         return (
           <div key="step1" className={slideClass}>
             <h2 className="fs-24 font-bold text-color mb-24">Thông Tin Đăng Nhập</h2>
-            
             <input
               type="text"
               name="username"
@@ -60,7 +98,6 @@ const SignUpForm: React.FC = () => {
               onChange={handleInputChange}
               placeholder="User Name"
             />
-
             <input
               type="email"
               name="email"
@@ -68,7 +105,6 @@ const SignUpForm: React.FC = () => {
               onChange={handleInputChange}
               placeholder="Email"
             />
-
             <input
               type="password"
               name="password"
@@ -83,7 +119,6 @@ const SignUpForm: React.FC = () => {
         return (
           <div key="step2" className={slideClass}>
             <h2 className="fs-24 font-bold text-color mb-24">Thông Tin Cá Nhân</h2>
-            
             <input
               type="text"
               name="fullName"
@@ -91,7 +126,6 @@ const SignUpForm: React.FC = () => {
               onChange={handleInputChange}
               placeholder="Full Name"
             />
-
             <input
               type="tel"
               name="phoneNumber"
@@ -106,14 +140,12 @@ const SignUpForm: React.FC = () => {
         return (
           <div key="step3" className={slideClass}>
             <h2 className="fs-24 font-bold text-color mb-24">Thông Tin Bổ Sung</h2>
-            
             <input
               type="date"
               name="birthday"
               value={formData.birthday}
               onChange={handleInputChange}
             />
-
             <select
               name="gender"
               value={formData.gender}
@@ -126,53 +158,67 @@ const SignUpForm: React.FC = () => {
               <option value="female">Nữ</option>
               <option value="other">Khác</option>
             </select>
-            
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleInputChange}
-              placeholder="Thành phố, Quốc gia"
-            />
+            <select
+              className="w-100 fs-13 h-40 bg-gray-500 my-8 px-16 py-6 lh-16 text-color radius-8 cursor-pointer border-none"
+              style={{backgroundColor: '#eee', padding: '10px 15px', color: '#626276'}}
+              value={selectedProvince}
+              onChange={(e) => setSelectedProvince(e.target.value)}
+            >
+              <option value="">Thành phố, Quốc gia</option>
+              {provinces.map(province => (
+                <option key={province.id} value={province.name}>
+                  {province.name}
+                </option>
+              ))}
+            </select>
           </div>
         );
 
       case 4:
         return (
-          <div key="step4" className={slideClass}>
+          <div key="step4" className={`${slideClass} file-input-wrapper`}>
             <h2 className="fs-24 font-bold text-color mb-24">Ảnh Đại Diện</h2>
-            
+            <label htmlFor="avatar-upload" className="file-input-label">
+              Chọn ảnh đại diện
+            </label>
             <div className="mb-6">
-              <label className="block text-gray-700 text-sm font-semibold mb-2">
-                <Image className="inline w-4 h-4 mr-2" />
-                URL ảnh đại diện
-              </label>
               <input
-                type="url"
-                name="avatarUrl"
-                value={formData.avatarUrl}
-                onChange={handleInputChange}
-                placeholder="https://example.com/avatar.jpg"
+                id="avatar-upload"
+                type="file"
+                accept="image/*"
+                className="file-input-hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setFormData(prev => ({
+                        ...prev,
+                        avatarUrl: reader.result as string,
+                        avatarFile: file
+                      }));
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
               />
             </div>
-
-            {formData.avatarUrl && (
-              <div className="flex justify-center mb-6">
+            
+            {formData.avatarUrl ? (
+              <div className="d-flex justify-center mb-6">
                 <img
                   src={formData.avatarUrl}
                   alt="Preview"
-                  className="w-32 h-32 rounded-full object-cover border-4 border-blue-500"
+                  className="w-120 h-120 radius-50 object-cover border-4 border-blue-500"
+                />
+              </div>
+            ) : (
+              <div className="d-flex justify-center mb-6">
+                <div
+                  className="w-120 h-120 radius-50 object-cover border-4 border-blue-500 bg-gray-500"
                 />
               </div>
             )}
-
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-gray-700">
-              <p className="font-semibold mb-2">Xem lại thông tin:</p>
-              <p><strong>Tên đăng nhập:</strong> {formData.username}</p>
-              <p><strong>Email:</strong> {formData.email}</p>
-              <p><strong>Họ tên:</strong> {formData.fullName}</p>
-              <p><strong>Số điện thoại:</strong> {formData.phoneNumber}</p>
-            </div>
           </div>
         );
 
@@ -209,11 +255,7 @@ const SignUpForm: React.FC = () => {
             type="button"
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`d-flex align-center px-32 rounded-lg font-semibold transition ${
-              currentStep === 1
-                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
-            }`}
+            className={`d-flex align-center px-32 fw-semibold transition`}
           >
             <ChevronLeft size={16} />
             Quay lại
@@ -223,7 +265,7 @@ const SignUpForm: React.FC = () => {
             <button
               type="button"
               onClick={nextStep}
-              className="d-flex align-center px-32 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition"
+              className="d-flex align-center px-32 fw-semibold transition"
             >
               Tiếp theo
               <ChevronRight size={16} />
@@ -232,10 +274,10 @@ const SignUpForm: React.FC = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="d-flex align-center px-32 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition"
+              className="d-flex align-center px-32 fw-semibold transition"
             >
               Hoàn tất
-              <ChevronRight className="w-5 h-5 ml-1" />
+              <ChevronRight size={16} />
             </button>
           )}
         </div>

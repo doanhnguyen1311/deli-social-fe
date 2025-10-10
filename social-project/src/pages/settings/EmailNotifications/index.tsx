@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./index.module.css";
 
 type NotificationOption = {
     label: string;
@@ -77,22 +76,22 @@ const notificationSettings: NotificationCategory[] = [
 
 const EmailNotifications: React.FC = () => {
     return (
-        <form className={styles.container}>
-            <h2 className={styles.heading}>Email Notifications</h2>
-            <p className={styles.subheading}>Set your email notification preferences.</p>
+        <form>
+            <h2 className='fs-24 mb-16 text-color'>Email Notifications</h2>
+            <p className='fs-14 pb-8 text-color lh-16 fw-normal'>Set your email notification preferences.</p>
 
             {notificationSettings.map((category) => (
                 <div key={category.title}>
-                    <h4 className={styles.category}>{category.title}</h4>
+                    <h4 className='font-bold fs-16 mt-24 mb-12'>{category.title}</h4>
                     {category.options.map((option) => (
-                        <div key={option.name} className={styles.row}>
-                            <span className={styles.label}>{option.label}</span>
-                            <div className={styles.radioGroup}>
-                                <label className={styles.radioLabel}>
+                        <div key={option.name} className='d-flex justify-between align-center mb-16 pb-8 border-bottom-gray'>
+                            <span className='fs-14 text-color'>{option.label}</span>
+                            <div className='d-flex gap-20px ml-20'>
+                                <label className='d-flex align-center fs-14 gap-6px'>
                                     <input type="radio" name={option.name} defaultChecked />
                                     <span>Yes</span>
                                 </label>
-                                <label className={styles.radioLabel}>
+                                <label className='d-flex align-center fs-14 gap-6px'>
                                     <input type="radio" name={option.name} />
                                     <span>No</span>
                                 </label>
@@ -102,7 +101,7 @@ const EmailNotifications: React.FC = () => {
                 </div>
             ))}
 
-            <button type="submit" className={styles.saveButton}>
+            <button type="submit" className='btn-gradient-purple text-white py-8 lh-16' style={{ width: "30%" }}>
                 Save Changes
             </button>
         </form>

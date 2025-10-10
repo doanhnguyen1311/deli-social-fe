@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./index.module.css";
 
 const options = ["Everyone", "Only Me", "All Members", "My Friends"];
 
@@ -16,36 +15,36 @@ const ProfileVisibilitySettings: React.FC = () => {
     };
 
     return (
-        <form className={styles.container}>
-            <h2 className={styles.heading}>Profile Visibility Settings</h2>
-            <p className={styles.subheading}>
+        <form>
+            <h2 className='fs-24 mb-16 text-color'>Profile Visibility Settings</h2>
+            <p className='fs-14 pb-8 text-color lh-16 fw-normal'>
                 Select who may see your profile details.
             </p>
 
-            <table className={styles.table}>
+            <table className='w-100 mb-24'>
                 <thead>
                     <tr>
-                        <th className={`${styles.th} ${styles.th1}`}>Base</th>
-                        <th className={styles.th}>Visibility</th>
+                        <th className='text-left border-bottom-gray bg-white py-12 px-0 w-76per'>Base</th>
+                        <th className='text-left border-bottom-gray bg-white py-12 px-0'>Visibility</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr className={styles.row}>
-                    <td className={styles.td}>Name</td>
-                    <td className={`${styles.td} ${styles.td1}`}>Everyone</td>
+                <tr className='border-bottom-gray'>
+                    <td className='py-14 px-0 fs-14 text-color bg-white'>Name</td>
+                    <td className='py-14 px-0 fs-14 text-color bg-white'>Everyone</td>
                 </tr>
                 {Object.entries(visibility).map(([key, value]) => {
                     if (key === "name") return null;
                     return (
-                    <tr key={key} className={styles.row}>
-                        <td className={styles.td}>
+                    <tr key={key} className='border-bottom-gray'>
+                        <td className='py-14 px-0 fs-14 text-color bg-white'>
                             {key
                                 .replace(/([A-Z])/g, " $1")
                                 .replace(/^./, (c) => c.toUpperCase())}
                         </td>
-                        <td className={`${styles.td} ${styles.td1}`}>
+                        <td className='py-14 px-0 fs-14 text-color'>
                             <select
-                                className={styles.select}
+                                className='select'
                                 value={value}
                                 onChange={(e) =>
                                     handleChange(key as keyof typeof visibility, e.target.value)
@@ -64,7 +63,7 @@ const ProfileVisibilitySettings: React.FC = () => {
                 </tbody>
             </table>
 
-            <button type="submit" className={styles.saveButton}>
+            <button type="submit" className='btn-gradient-purple text-white py-8 lh-16' style={{ width: "30%" }}>
                 Save Changes
             </button>
         </form>

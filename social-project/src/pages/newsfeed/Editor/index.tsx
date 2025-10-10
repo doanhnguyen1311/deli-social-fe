@@ -110,7 +110,7 @@ const Editor: React.FC<EditorProps> = ({ onNewPost }) => {
             }
             
             setNewPost(createdPost);
-            onNewPost?.(createdPost);
+            onNewPost?.(newPost);
             setContent("");
             setFiles([]);
             setVisibility("PUBLIC");

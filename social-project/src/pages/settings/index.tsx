@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./index.module.css";
 import General from "./General";
 import EmailNotifications from "./EmailNotifications";
 import ProfileVisibilitySettings from "./ProfileVisibilitySettings";
@@ -8,22 +7,22 @@ const Settings: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"general" | "email" | "visibility" | "invite">("general");
 
     return (
-        <div className={`col-lg-6 border-x-primary ${styles.container}`}>
-            <div className={styles.tabs}>
+        <div className='bg-white box-shadow radius-24 py-16 px-16'>
+            <div className='d-flex mb-24 gap-20px border-bottom-gray-200'>
                 <div
-                    className={`${styles.tab} ${activeTab === "general" ? styles.active : ""}`}
+                    className={`tab p-8 fs-14 fw-medium ${activeTab === "general" ? 'active' : ""}`}
                     onClick={() => setActiveTab("general")}
                 >
                     General
                 </div>
                 <div
-                    className={`${styles.tab} ${activeTab === "email" ? styles.active : ""}`}
+                    className={`tab p-8 fs-14 fw-medium ${activeTab === "email" ? 'active' : ""}`}
                     onClick={() => setActiveTab("email")}
                 >
                     Email
                 </div>
                 <div
-                    className={`${styles.tab} ${activeTab === "visibility" ? styles.active : ""}`}
+                    className={`tab p-8 fs-14 fw-medium ${activeTab === "visibility" ? 'active' : ""}`}
                     onClick={() => setActiveTab("visibility")}
                 >
                     Profile Visibility

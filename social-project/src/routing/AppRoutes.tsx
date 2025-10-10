@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
 import type { FC } from "react";
 import { MasterLayout } from "../layouts/MasterLayout";
-import { AuthLayout } from "../layouts/AuthLayout";
 import Login from "../pages/login";
 import NewsFeed from "../pages/newsfeed";
 import Watch from "../pages/watch";
